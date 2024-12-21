@@ -1,0 +1,169 @@
+.contextContainer{
+    width: 100%;
+    margin: 160px 0;
+}
+  
+.contentsContainer{
+    margin-top: 112px;
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.leftContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 330px;
+}
+
+.leftContainer h1, .midContainer h1{
+    display: flex;
+    justify-content: flex-start;
+    color: var(--Absolute-Black, var(--Absolute-Black, #101214));
+    font-family: 'Helvetica';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 36px */
+    letter-spacing: -1.92px;
+}
+
+.leftContainer h2, .midContainer h2 {
+    width: 100%;
+    font-family: 'Helvetica-light';
+    font-size: 1.2rem;
+}
+
+.leftContainer p, .midContainer p {
+    width: 100%;
+    font-family: 'Helvetica-light';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; 
+    letter-spacing: -0.36px;
+}
+
+
+.midContainer {
+    max-width: 330px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.helpText {
+    margin-top: 70px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-self: baseline;
+}
+
+
+
+.leftContainer h2, .midContainer h2{
+    margin-top: 20px;
+    margin-bottom: 6px;
+}
+
+
+.rightContainer {
+    display: flex;
+    width: 590px;
+    height: 480px;
+    align-items: center;
+    margin-right: 0;
+    justify-content: center;
+    right: 0; /* Sticks to the right edge */
+    top: 0;
+    flex-direction: column;
+    overflow-y: hidden;
+    background-color: pink;
+}
+
+
+.weekdays {
+    margin-top: 20px;
+}
+
+.weekends {
+    margin-top: 16px;
+}
+
+
+
+.helpText a {
+    font-family: 'Helvetica';
+    color:var(--primary-color);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; 
+    letter-spacing: -1.12px;
+}
+
+
+.mapBox {
+    position: relative;
+    /*
+    background: url('/access.png') lightgray -0.012px -3.278px / 100% 143.084% no-repeat;
+    display: flex;
+    justify-content: center;  
+    align-items: center; 
+        */
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.mobileMapBox{
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .leftContainer p, .addressContainer p, .helpText, .mapBox {
+        display: none;
+    }
+    
+
+    .weekdays p, .weekends p{
+        display: flex;
+    }
+
+    .contentsContainer{
+        margin-top: 33px;
+        display: flex;
+        position: relative;
+        width: 100%;
+        flex-direction: column;
+
+    }
+
+    .leftContainer {
+        width: 100%;
+    }
+
+    .midContainer {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .rightContainer {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mobileMapBox {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+}

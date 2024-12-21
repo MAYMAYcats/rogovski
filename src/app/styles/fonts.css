@@ -1,0 +1,29 @@
+@font-face{
+    font-family: 'Helvetica Light';
+    src: url('/fonts/helvetica-light-587ebe5a59211.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Helvetica';
+    src: url('/fonts/helvetica.ttf') format('truetype');
+    font-style: normal;
+}
+
+
+@font-face{
+    font-family: 'Helvetica_Compressed';
+    src: 
+   
+    url('/fonts/Helvetica_Compressed.woff') format('woff'),
+    url('/fonts/Helvetica_Compressed.ttf') format('truetype'),
+    url('/fonts/Helvetica_Compressed.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.custom-image{
+    width: 200px !important;
+    height: auto;
+}

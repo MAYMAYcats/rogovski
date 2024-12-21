@@ -1,0 +1,40 @@
+.imageRow {
+    display: flex;
+    justify-content: flex-start; /* Align images to the left */
+    overflow-x: hidden; /* Make the row horizontally scrollable if images overflow */
+    gap: 0; /* Space between images */
+    padding: 10px 0; /* Add some padding around */
+  }
+  
+  .imageContainer {
+    flex: 0 0 auto; /* Prevent images from stretching, and keep them at their original size */
+    height: auto; /* Let height adjust according to the width */
+    max-width: 180px;
+  }
+  
+  /* Medium screen (tablets) - Show fewer images */
+  @media (max-width: 1024px) {
+    .imageContainer {
+      max-width: 180px; /* Smaller images on tablets */
+    }
+  }
+  
+  /* Small screen (phones) - Show fewer images */
+  @media (max-width: 768px) {
+    .imageContainer {
+      max-width: 140px; /* Smaller images on phones */
+      padding: 50px 0; /* Add some padding around */
+    }
+  }
+  
+  /* Extra small screen (small phones) - Show just one image at a time */
+  @media (max-width: 480px) {
+    .imageRow {
+      justify-content: center; /* Center images on very small screens */
+    }
+  
+    .imageContainer {
+      max-width: 120px; /* Even smaller images on small phones */
+    }
+  }
+  

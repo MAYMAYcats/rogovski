@@ -1,0 +1,173 @@
+.imageBox {
+    margin-top: 110px;
+    position: relative;
+    display: flex;
+    width: 100%;
+    
+}
+
+.mobileImageBox {
+    display: none;
+}
+
+.welcomeBox {
+    margin-top: 20px;
+    width: 590px;
+    height: 164px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row; /* Stack WELCOME and Japanese text vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+.welcomeItem {
+    display: flex;
+    width: 454px;
+    height: 164px;
+    position: relative;
+    background-color: var(--primary-color);
+    transition: transform 0.3s ease;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap; 
+    font-family: 'Helvetica';
+    font-size: 30px;
+    font-weight: 700;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+
+.eventListContainer{
+    margin-top: 40px;
+
+}
+
+.eventList{
+    font-family: 'Helvetica-light';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.32px;
+    width: 590px;
+    height: 53.7px;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    position: relative;
+}
+
+
+.eventList a::after {
+    content: ''; /* Required to create an element */
+    position: absolute; 
+    bottom: 0px; /* Adjust based on the desired space from the text */
+    left: 50%; /* Start the line from the center horizontally */
+    width: 0%; /* Start with zero width */
+    height: 2px; /* The thickness of the underline */
+    background-color: var(--primary-color); /* Red underline */
+    opacity: 0; /* Hidden by default */
+    transition: width 0.3s ease, left 0.3s ease, opacity 0.3s ease-in-out; /* Smooth transitions */
+}
+  
+.eventList a:hover::after {
+    opacity: 1; /* Show the red underline when hovered */
+    width: 100%;
+    left: 0;
+}
+
+
+.watchAllEvent {
+    display: flex;
+    justify-content: space-between; /* Push items to edges */
+    align-items: center; /* Vertically center text and icon */
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.watchAllEventText {
+    display: flex;
+    color: var(--primary-color);
+    font-family: 'Helvetica';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    letter-spacing: -1.28px;
+}
+
+.icon svg{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; /* Vertically align icon with text */
+    vertical-align: middle;
+}
+
+
+
+.word1, .word2, .word3, .word4, .word5 {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    opacity: 0;
+    align-items: center;
+    text-align : center;
+    width: 100%;
+    height: 100%;
+}
+.welcomeItem  .word1 { animation: word-animation 10s infinite; }
+.welcomeItem  .word2 { animation: word-animation 10s infinite 2s; }
+.welcomeItem  .word3 { animation: word-animation 10s infinite 4s; }
+.welcomeItem  .word4 { animation: word-animation 10s infinite 6s; }
+.welcomeItem  .word5 { animation: word-animation 10s infinite 8s;}
+
+
+@keyframes word-animation {
+    0%, 5% { opacity: 0; }
+    10%, 22% { opacity: 1; }
+    27%, 100% { opacity: 0; }
+}
+
+
+.russsianText {
+    width: 132px;
+    height: 164px;
+    background-color: var(--primary-color);
+    display: flex;              /* Use flexbox inside */
+    justify-content: center;    /* Center text horizontally */
+    align-items: center;        /* Center text vertically */
+    text-align: center;         /* Ensure text is centered */
+    font-family: 'Helvetica';
+    font-size: 16px;
+    color: #fff;
+    line-height: 150%;
+    letter-spacing: -1.28px;
+}
+
+@media (max-width: 768px) {
+    .eventListContainer .eventList, .imageBox, .welcomeBox {
+        display: none;
+    }
+
+    .mobileImageBox{
+        margin-top: 1rem;
+        display: flex;
+        width: 100%;
+        height: auto;
+        place-items: center;
+    }
+
+    .watchAllEvent {
+        margin-top: 0;
+    }
+
+    .watchAllEventText {
+        margin-top :0 ;
+    }
+
+
+
+}

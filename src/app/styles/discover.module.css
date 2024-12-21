@@ -1,0 +1,217 @@
+.aContainer {
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    left: 210px; /* Offset the container from the left */
+    width: calc(100% - 420px);
+    height: auto;
+    z-index: 1; /* Ensure it's behind .ssibal */
+    justify-content: center; 
+    display: flex;
+    align-items: center;
+}
+
+.titleContainer {
+    display: flex;
+    width: 100%;
+    margin: 160px 0;
+    justify-content: space-between;
+    align-items: baseline; /* Aligns titleEn and titleJp along the baseline */
+    color: var(--primary-color);
+    position: relative; /* Make sure the container has proper positioning */
+}
+
+
+.titleEn {
+    display: flex;
+    align-items: baseline; 
+    font-family: 'Helvetica_Compressed';
+    font-size: 152px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 90%;
+    letter-spacing: -3.04px;
+    justify-content: baseline;
+    align-self: flex-start;
+    width: 1035px;
+}
+
+.titleJp {
+    width: 75px;
+    display: flex;
+    align-items: flex-end; 
+    font-family: 'Helvetica';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; 
+    letter-spacing: -1.28px;
+    height: 274px;
+    bottom: 0;
+    align-self: flex-end;
+}
+
+.firstContainer {
+    display: flex;
+    width: 100%;
+    height: 291px;
+    align-items: center;
+    gap: 476px;
+    flex-shrink: 0;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.firstContent {
+    width: 736px;
+}
+.firstContent h2{
+    display: flex;
+    width: 100%;
+    margin: 10px 0;
+    color: #000;
+    font-family: 'Helvetica Light';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.32px;
+}
+
+.secondContainer{
+    width: 100%;
+    height: 805px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contentsGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 112px;
+    height: auto;
+    gap: 80px;
+}
+
+.mainContents{
+    width: 100%;
+    height: 30px;
+}
+
+.titles{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.mainTitle{
+    color: var(--Absolute-Black, #101214);
+    font-family: 'Helvetica';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 36px */
+    letter-spacing: -0.48px;
+}
+
+.sepLine{
+    width: 100%;
+    height: 2px;
+    flex-shrink: 0;
+    align-self: stretch;
+    background: rgba(0, 0, 0, 0.20);
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    max-height: 0;  /* Initially, content is hidden */
+    padding: 0 10px;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.contentText {
+    width: 590px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    vertical-align: center;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: space-between; /* Push h3 to the bottom */
+    align-items: flex-start; /* Align text to the left or start of the container */
+}
+
+.contentBox {
+    flex:display;
+    height: 100%;
+}
+
+.contentBox p{
+    margin: 10px 0;
+}
+
+.contentText h3{
+    display: flex;
+    width: 588px;
+    flex-direction: column;
+    justify-content: bottom;
+    align-items: center;
+    gap: 5px;
+}
+
+.contentPhoto{
+    background-color: self;
+}
+/*
+.mainContent.open .content {
+    max-height: 530px;  
+    padding: 10px;      
+}
+
+.mainContent.open {
+    background-color:self; 
+}
+*/
+
+.titles.open .mainTitle {
+    color: #0077cc; /* Optional: Highlight title when open */
+}
+
+.titles.open .content {
+    max-height: 530px;  /* Set a max-height when opened */
+    padding: 10px;      /* Add padding when expanded */
+}
+
+.titles.open {
+    background-color:self; /* Optional: highlight active menu */
+}
+
+.content.open {
+    max-height: 530px; /* When opened, increase max height */
+    padding: 10px; /* Add padding when expanded */
+}
+
+.contentText {
+    width: 590px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Optional: Styling for arrow when clicked */
+.arrowIcon {
+    transition: transform 0.3s ease;
+}
+
+.titles.open .arrowIcon {
+    transform: rotate(180deg); /* Rotate the arrow when the content is open */
+}

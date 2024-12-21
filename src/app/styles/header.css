@@ -1,0 +1,420 @@
+/* header.module.css */
+html {
+    scroll-behavior: smooth;
+}
+
+.headContainer {
+    max-width: 1920px;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    padding: 0 210px;
+    height: 152px;
+    border-width: 3px;
+    z-index: 2;
+    justify-content: center; 
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+}
+
+.headMenuContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    z-index: 2; /* Ensure it appears above .headContainer */
+}
+
+.imgContainer {
+    display: flex;
+    align-items: center;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*flex-shrink: 0;*/
+    width: 200px;  /* Set fixed width */
+    height: 106px; /* Set fixed height */
+    object-fit: contain; /* Maintain aspect ratio */
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center; 
+    justify-content: flex-start; 
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 0;
+    margin: 0; 
+    list-style: none; 
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+nav ul li {
+    display: flex; /* Make li a flex container */
+    align-items: center; /* Center its children (the anchor tags) vertically */
+}
+
+nav ul li a{
+    color: #000; /* Default color */
+    font-size: 1.125rem; /* Ensure consistent font size */
+    text-align: center; /* Keep centered text */
+    text-decoration: none; /* Remove underline */
+    position: relative;
+    transition: transform 0.3s ease; 
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    height: 27px;
+    letter-spacing: -0.36px;
+    align-items: center;
+}
+
+
+nav ul li a.menuItem {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 27px;
+    margin-left: 60px;
+    margin-right: 0;
+    cursor: pointer;
+}
+
+.langContainer {
+    margin-left: auto; /* Push to the far right */
+    margin-right: 0;
+    display: flex;
+    align-items: center; /* Ensure it is vertically centered within its container */
+    cursor: pointer;
+    z-index:5;
+}
+
+
+.frame6 {
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+    display: flex;
+    flex-shrink: 0;
+}
+
+
+.langBox {
+    display: flex;
+    width: 70px;
+    height: 52px; 
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: 'white'; 
+    border: 1px #101214 solid;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+
+.langSelect {
+    color: #101214;
+    font-size: 0.875rem;
+    font-family: Inter;
+    font-weight: 300;
+    word-wrap:break-word;
+}
+
+.symbol {
+    width: 0.75rem;
+    height: 0.75rem;
+    position: relative;
+    transform: rotate(360deg);
+    transform-origin: '0 0';
+}
+
+
+.languageOptions {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 70px;
+    margin-top: 52px; /* Adjusted margin to position below the selected language */
+    position: absolute;
+}
+  
+.languageOption {
+    display: flex;
+    position: relative;
+    top: 52px;
+    height: 52px;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    /*margin-bottom: 5px;
+    border-radius: 4px;*/
+}
+  
+.languageOption:hover {
+    background-color:#ffffff;
+}
+
+/* HOVER EFFECT */
+/* Tilt animation */
+
+nav ul li a.menuItem{
+    position: relative; /* Added this to ensure pseudo-elements are positioned correctly */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Optionally, horizontally center the content */
+    /*color: #000; *//* Default color */
+    font-size: 1.125rem; /* Ensure consistent font size */
+    text-align: center; /* Keep centered text */
+    text-decoration: none; /* Remove underline */
+    transition: transform 0.3s ease;
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+    letter-spacing: -0.36px;
+    height: 27px; /* Set a fixed height to ensure alignment */
+}
+
+
+nav ul li a.menuItem::after{
+    content: "";
+    position: absolute;
+    bottom: -2px; /* Adjusts the underline's vertical position */
+    left: 50%;
+    width: 0;
+    height: 2px; /* Thickness of the underline */
+    background-color: var(--primary-color); /* Underline color */
+    transition: width 0.3s ease, left 0.3s ease; /* Smooth width and position transition */
+    transform: translateX(-50%) scaleX(0);
+    /*transform-origin: center;*/
+}
+
+
+nav ul li a.menuItem:hover::after {
+    width: 100%; /* Full width on hover */
+    left: 0; /* Reset left to align from the start */
+    transform: none;
+}
+
+
+/* Popup Image */
+nav ul li a.menuItem::before{
+    content: "";
+    position: absolute;
+    top: -150%; /* Position above or beside link */
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    width: 24px; /* Popup image width */
+    height: 42px; /* Popup image height */
+    background-image: url('/matryoshka.png'); /* Replace with your image path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease; /* Smooth fade-in */
+    z-index: 10; /* Ensure it appears above other content */
+}
+
+nav ul li a.menuItem:hover::before
+ {
+    opacity: 1; /* Show image on hover */
+    animation: tilt 0.8s ease-in-out infinite;
+}
+
+
+@keyframes tilt {
+    0% {
+        transform: translate(-50%) rotate(0deg);
+    }
+    25% {
+        transform: translate(-50%) rotate(10deg);
+    }
+    50% {
+        transform: translate(-50%) rotate(0deg);
+    }
+    75% {
+        transform: translate(-50%) rotate(-10deg);
+    }
+    100% {
+        transform: translate(-50%) rotate(0deg);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .headContainer {
+        position: fixed;
+        top: 0;
+        padding: 0;
+        width: 100vw;
+        margin: 0;
+        left: 0px; 
+        height: 152px;
+        border-width: 3px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+    }
+
+    .headMenuContainer {
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    
+    .imgContainer {
+        display: flex;
+        align-items: baseline; /* Center content vertically */
+        justify-content: start; /* Center content horizontally */
+        width: 100%; /* Make sure it takes full width */
+    }
+
+    .logo {
+        left: 0;
+        right: auto;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block; /* Ensure the logo is visible */
+    }
+
+    .langContainer {
+        display: none !important; /* Hide the logo on smaller screens */
+    }
+
+    .menuList {
+        display: none; /* Hide the menu by default on mobile */
+
+    }
+
+    .menuList.mobileVisible {
+        display: flex; /* Show the menu when the mobile menu is visible */
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-end; 
+    }
+
+    .hamburger {
+        display: flex;
+        align-items: center; /* Center content vertically */
+        justify-content: center;
+        display: block;
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: 0px;
+        width: 90px;
+        height: 48px;
+        color: var(--primary-color);
+        z-index:10;
+    }
+
+    .bar {
+        display: flex;
+        align-items: center; /* Center content vertically */
+        justify-content: center;
+        background-color: var(--primary-color); 
+        height: 3px;
+        width: 25px;
+        margin: 5px 0;
+        margin-right: 24px;
+        transition: all 0.3s;
+    }
+
+    /* Adjust the hamburger icon on click for animation */
+    .hamburger.open .bar:nth-child(1) {
+        transform: rotate(45deg);
+        position: relative;
+        top: 8px;
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.open .bar:nth-child(3) {
+        transform: rotate(-45deg);
+        position: relative;
+        top: -8px;
+    }
+
+    nav ul {
+        /*margin: 200px 0 0 0;*/
+        margin-top : 200px;
+        right: 0;
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Ensure both li and a elements use border-box */
+    nav ul li{
+        border-width: 1px;
+        width: 100%;
+
+        margin: 0;
+        display: flex; /* Use flex to align children inside the li */
+        align-items: center; /* Center text vertically */
+        justify-content: flex-end; /* Center text horizontally */
+        padding: 0; /* Remove any default padding */
+        flex-shrink: 0; /* Prevent li from shrinking */
+        flex-grow: 0;  /* Prevent li from growing */
+    }
+
+    /* Hover effect on menu items for mobile */
+    nav ul li a {
+        display: inline-flex;
+        justify-content: center;
+        color:var(--primary-color);  /* Default text color */
+        background-color: #fff;
+        align-items: center; /* Vertically center text */
+       /* Add some vertical padding for spacing */
+        width: 100%;
+        white-space: nowrap; /* Prevent text from wrapping */
+       /* text-overflow: ellipsis;*/ /* Optional: if text overflows, show ellipsis */
+    }
+
+
+
+    /* Hover effect for menu items */
+    nav ul li a:hover {
+        background-color: pink;
+
+    }
+
+    /* Remove dynamic image hover effect for small screens */
+    nav ul li a.menuItem::before {
+        content: none !important; /* Disable the image hover effect */
+    }
+
+    /* Remove underline effect on hover for mobile */
+    nav ul li a.menuItem::after {
+        content: none !important; /* Disable the underline hover effect */
+    }
+}
+
+
