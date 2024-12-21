@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import '../styles/globals.css';
 import styles from '../styles/menu.module.css';
-import Bottom from '@/components/bottom';
 
 const MenuPage: React.FC =() =>(
     <section id="menu">
