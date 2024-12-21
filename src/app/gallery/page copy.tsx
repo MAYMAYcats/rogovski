@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import '../styles/gallery.css';
 
-const GalleryPage: React.FC = () => {
+const GalleryPageC: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   // Handle the scroll event

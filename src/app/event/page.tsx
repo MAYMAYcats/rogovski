@@ -1,11 +1,10 @@
 'use client'; // This tells Next.js to treat this file as a client-side component
 
-
 import Image from 'next/image';
 import '../styles/globals.css';
 import styles from '../styles/event.module.css';
 import Header from '@/components/header';
-import Bottom from '@/components/bottom';
+
 
 const EventPage: React.FC =() =>(
   <section id="event">

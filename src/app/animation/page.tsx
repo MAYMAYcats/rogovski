@@ -1,7 +1,5 @@
 'use client'; // This tells Next.js to treat this file as a client-side component
-import Image from 'next/image';
 import '../styles/animation.css';
-import Bottom from '@/components/bottom';
 
 const AnimationPage: React.FC =() =>(
     <section id="animation">

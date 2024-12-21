@@ -2,8 +2,6 @@
 import Image from 'next/image';
 import '../styles/globals.css';
 import styles from '../styles/access.module.css';
-import Bottom from '@/components/bottom';
-
 const AccessPage: React.FC =() =>(
     <section id="access">
         <div className="container">
