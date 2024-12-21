@@ -32,7 +32,7 @@ export default function Header() {
 
     const toggleMobileMenu = () => {
         setIsMobileMenuVisible(!isMobileMenuVisible);
-        document.querySelector('.hamburger').classList.toggle('open'); // Add/remove the open class for animation
+        document.querySelector('.hamburger')?.classList.toggle('open'); // Add/remove the open class for animation
     };
     
     return (
