@@ -10,8 +10,30 @@
     margin: 100px 0 0 0;
 }
 
-
 .animation {
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .animationContainer {
+        position: relative;
+        width: 100%;
+        left: 0; /* Offset the container from the left */
+        z-index: 1; /* Ensure it's behind .ssibal */
+        justify-content: center; 
+        display: flex;
+        flex-direction: column;
+        margin: 100px 0 0 0;
+    }
+    
+    .animation {
+        display: flex;
+        justify-content: center;
+    }
+
+    .video {
+        width: 100%;
+    }
+
 }
