@@ -3,7 +3,6 @@
   height: 100vh;
   display: flex;
   flex-wrap: nowrap;
-  background-color: aqua;
 }
 
 .firstContainer {
@@ -12,11 +11,34 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: yellow;
 }
 
 .lastContainer {
   display: flex;
   height: 100vh;
-  background: yellow;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 400%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: aqua;
+  }
+  
+  .firstContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: yellow;
+  }
+  
+  .lastContainer {
+    display: flex;
+    height: 100vh;
+    background: yellow;
+  }
 }

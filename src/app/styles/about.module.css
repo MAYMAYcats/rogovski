@@ -63,7 +63,6 @@
     grid-column: 1/2;
     width: 240px;
     height: 211px;
-    background-color: green;
 }
 
 .imageBox2{
@@ -71,7 +70,6 @@
     grid-column: 3;
     width: 330px;
     height: 474px;
-    background-color: green;
 }
 
 .imageBox3{
@@ -79,7 +77,6 @@
     grid-column: 1;
     height: 243px;
     width: 110px;
-    background-color: green;
 }
 
 .imageBox4{
@@ -87,7 +84,6 @@
     grid-column: 2;
     width: 110px;
     height: 129px;
-    background-color: green;
 }
 
 .imageBox5{
