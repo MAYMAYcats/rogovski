@@ -15,12 +15,13 @@ import GallerySection from './gallery/page';
 import Header from '@/components/header';
 import ScrollIcon from './scrollicon/page'
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import i18n from './i18n'; // Import your i18n configuration here
-
+/*
 import { useLocale } from '@/context/LocaleContext'; // Context에서 로케일 가져오기
 import { format } from 'date-fns';
 import { ja } from 'date-fns/locale'; // 일본어 로케일 가져오기
+*/
 
 export default function Home() {
   

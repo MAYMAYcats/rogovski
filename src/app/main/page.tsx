@@ -5,9 +5,10 @@ import Bottom from '@/components/bottom';
 import { useEffect, useState } from 'react';
 
 import { useTranslation } from "react-i18next";
+/*
 import { format } from 'date-fns';
 import { ja } from 'date-fns/locale'; // 일본어 로케일 가져오기
-
+*/
 
 const MainPage: React.FC =() =>{
 

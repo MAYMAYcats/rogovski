@@ -70,7 +70,7 @@ const GallerySection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [isLocked, setIsLocked] = useState(false);
-  const [progress, setProgress] = useState(0);
+  /*const [progress, setProgress] = useState(0);*/
   const scrollPosition = useRef(0);
   const targetScroll = useRef(0);
   const isScrollComplete = useRef(false);
@@ -146,7 +146,7 @@ const GallerySection: React.FC = () => {
       // Update scroll position and progress
       container.scrollLeft = scrollPosition.current;
       const currentProgress = (scrollPosition.current / maxScroll) * 100;
-      setProgress(Math.min(100, Math.max(0, currentProgress)));
+      /*setProgress(Math.min(100, Math.max(0, currentProgress)));*/
       // Check if scrolling is complete
       if (currentProgress >= 98) {
         setIsLocked(false);

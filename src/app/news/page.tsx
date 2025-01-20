@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import styles from '../styles/news.module.css';
 import {useFetchProjects} from '../fetchProject';
-import {useState, useRef} from 'react';
+import {useRef} from 'react';
 
 
 //const NewsPage: React.FC =() =>(
