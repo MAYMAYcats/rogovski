@@ -1,8 +1,7 @@
 #footer {
-  margin-top: 200px;
+  margin-top: 10rem;
   height: 716px;
   background-image: url('/restaurant.jpg');
-  background-color: rgba(211, 211, 211, 1); 
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -21,7 +20,6 @@
   width: 705px;
   height: 453px;
   gap: 7.5rem;
-
 }
 
 .leftContainer {
@@ -33,9 +31,9 @@
   margin: 0;
 }
 
-.leftContainer h2{
-  color: #FFF;
+.leftContainer h1{
   font-family: 'Helvetica_Compressed';
+  color: #FFF;
   font-size: 3.125rem;
   font-style: normal;
   font-weight: 500;
@@ -46,17 +44,16 @@
 
 .leftContainer p{
   color: #FFF;
-  font-family: Helvetica;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 27px */
   letter-spacing: -1.44px;
+  align-self: stretch;
 }
 
 .leftContainer h3{
   color: #FFF;
-  font-family: Helvetica;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 400;
@@ -68,7 +65,6 @@
 .weekdays{
   margin-top: 20px;
   color: #FFF;
-  font-family: 'Helvetica';
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 400;
@@ -79,7 +75,6 @@
 .weekends{
   margin-top: 16px;
   color: #FFF;
-  font-family: Helvetica;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -99,7 +94,6 @@
 .midContainer li{
   display: flex;
   color: #FFF;
-  font-family: 'Helvetica';
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -124,6 +118,11 @@
   gap: 10px;
   align-self: stretch;
   border: 1px solid #FFF;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 28.8px */
+  letter-spacing: -1.92px;
 }
 
 .rightContainer {
@@ -141,4 +140,98 @@
   width: 46px;
   height: 196px;
   gap: 26px;
+}
+
+@media (max-width: 393px) {
+
+  #footer {
+    margin-top:8rem;
+    height: 100%;
+    background-image: url('/restaurant.jpg');
+    background-color: rgba(211, 211, 211, 1); 
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply, normal;
+    background-color: #E2483D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+  }
+
+
+  .footerContainer{
+    margin: 0 3rem;
+    padding: 0; 
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+    height: 100%;
+    gap: 0;
+  }
+
+  .leftContainer{
+    display: none;
+  }
+
+  .midContainer ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  ul li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  ul li .customLine {
+    width: 100%;
+    height: 0.1rem;   /* Line thickness */
+    background-color: #fff;  /* Line color */
+    margin: 0 auto;  /* Center the line */
+    position: absolute;
+    bottom: 0;     /* Position the line at the bottom */
+  }
+
+  .reserveBtn{
+    color: #E2483D;
+    border-radius: 4px;
+    background-color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; 
+    letter-spacing: -1.92px;
+    margin-bottom: 0;
+    height: 46px;
+  }
+
+  .rightContainer {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content:baseline;
+    align-items:first baseline;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+  }
+  
+  .snsIcon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    gap: 1.7rem;
+  }
 }

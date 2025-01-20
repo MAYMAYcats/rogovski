@@ -1,9 +1,21 @@
+
+.container{
+    top:10rem
+}
+
+.contextContainer{
+    display: flex;
+    width: 100%;
+    margin: 0;
+    justify-content: space-between;
+
+}
+
 .imageBox {
-    margin-top: 110px;
     position: relative;
     display: flex;
     width: 100%;
-    
+    margin-top: 2rem;
 }
 
 .mobileImageBox {
@@ -31,7 +43,6 @@
     color: #fff;
     overflow: hidden;
     white-space: nowrap; 
-    font-family: 'Helvetica';
     font-size: 30px;
     font-weight: 700;
     justify-content: center;
@@ -42,71 +53,68 @@
 
 .eventListContainer{
     margin-top: 40px;
+    width: 110%;
+}
 
+.eventListContainer a{
+    text-decoration: none;
 }
 
 .eventList{
-    font-family: 'Helvetica-light';
-    font-size: 16px;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
     letter-spacing: -0.32px;
-    width: 590px;
-    height: 53.7px;
+    width: 100%;
+    height: 5rem;
     display:flex;
-    justify-content:space-between;
+    flex-direction: row;
     align-items: center;
     position: relative;
+    text-align: left;    
+}
+
+.eventDate {
+    width: 12rem;
+}
+
+.eventTitle {
+
+    width: auto;
+    margin-left: 1rem;
+    text-align: left; /* Ensures text within eventTitle is left-aligned */
+    display: block; /* Change flex to block if no flex layout is required */
 }
 
 
-.eventList a::after {
+.eventList span::after {
     content: ''; /* Required to create an element */
     position: absolute; 
-    bottom: 0px; /* Adjust based on the desired space from the text */
+    bottom: -2px; /* Adjust based on the desired space from the text */
     left: 50%; /* Start the line from the center horizontally */
     width: 0%; /* Start with zero width */
-    height: 2px; /* The thickness of the underline */
+    height: 3px; /* The thickness of the underline */
     background-color: var(--primary-color); /* Red underline */
     opacity: 0; /* Hidden by default */
     transition: width 0.3s ease, left 0.3s ease, opacity 0.3s ease-in-out; /* Smooth transitions */
 }
   
-.eventList a:hover::after {
+.eventList span:hover::after {
     opacity: 1; /* Show the red underline when hovered */
     width: 100%;
     left: 0;
 }
 
-
-.watchAllEvent {
-    display: flex;
-    justify-content: space-between; /* Push items to edges */
-    align-items: center; /* Vertically center text and icon */
-    margin-top: 40px;
-    margin-bottom: 0;
-}
-
-.watchAllEventText {
-    display: flex;
-    color: var(--primary-color);
-    font-family: 'Helvetica';
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 24px */
-    letter-spacing: -1.28px;
-}
-
 .icon svg{
+    position: absolute;
+    right: 0;
+    top: 1.5rem;
     display: flex;
     justify-content: flex-end;
     align-items: center; /* Vertically align icon with text */
     vertical-align: middle;
 }
-
-
 
 .word1, .word2, .word3, .word4, .word5 {
     display: flex;
@@ -136,18 +144,48 @@
     width: 132px;
     height: 164px;
     background-color: var(--primary-color);
-    display: flex;              /* Use flexbox inside */
-    justify-content: center;    /* Center text horizontally */
-    align-items: center;        /* Center text vertically */
-    text-align: center;         /* Ensure text is centered */
-    font-family: 'Helvetica';
+    display: flex;        
+    justify-content: center;  
+    align-items: center;      
+    text-align: center;      
     font-size: 16px;
     color: #fff;
     line-height: 150%;
     letter-spacing: -1.28px;
 }
 
-@media (max-width: 768px) {
+.calendarWrapper{
+    display: none;
+}
+
+@media (max-width: 393px) {
+
+    .contextContainer{
+        display: flex;
+        width: 100%;
+        margin: 8rem 0 0 0;
+        justify-content: space-between;
+    }
+
+    .calendarWrapper{
+        position: absolute;
+        right: 30px;
+        top: 8rem;
+        width: 6rem;
+        height: 3.25rem;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        background-color: var(--primary-color);
+        border-radius: 3000px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calendarText{
+        color: #fff;
+    }
+
     .eventListContainer .eventList, .imageBox, .welcomeBox {
         display: none;
     }
@@ -160,12 +198,9 @@
         place-items: center;
     }
 
-    .watchAllEvent {
-        margin-top: 0;
-    }
-
-    .watchAllEventText {
-        margin-top :0 ;
+    .mobileImageBox img{
+        height: 276px;
+        width: 100%;
     }
 
 

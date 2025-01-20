@@ -1,44 +1,90 @@
-'use client'; // Ensure this is a client-side component
+'use client';
 
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import '../app/styles/fonts.css';
 import '../app/styles/header.css';
-import '../app/styles/globals.css';
+import { useTranslation } from "react-i18next";
 
-// Dynamically import the Link component with ssr: false
-//const ScrollLink = dynamic(() => import('react-scroll').then(mod => mod.Link), { ssr: false });
+
 const ScrollLink = dynamic(() => import('react-scroll').then(mod => mod.Link), { ssr: false });
 
 
 export default function Header() {
-    const [isLanguageMenuVisible, setIsLanguageMenuVisible] = useState(false); // Toggle visibility of the language options
-    const [selectedLanguage, setSelectedLanguage] = useState<'EN' | 'JP' | 'CN'>('EN'); // Track the selected language
-    const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false); // For hamburger menu toggle
+    const { i18n } = useTranslation();
+    const [selectedLanguage, setSelectedLanguage] = useState<string>(i18n.language.toUpperCase());
+
+    const [isLanguageMenuVisible, setIsLanguageMenuVisible] = useState(false);
+    const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false); 
 
 
-    // Toggle language menu visibility
+    useEffect(() => {
+        setSelectedLanguage(i18n.language.toUpperCase());
+      }, [i18n.language]);
+
+      const handleLanguageSelect = (lang: string) => {
+        i18n.changeLanguage(lang.toLowerCase());
+        setSelectedLanguage(lang);
+        setIsLanguageMenuVisible(false);
+      };
+    
     const handleLanguageToggle = () => {
-        setIsLanguageMenuVisible((prevState) => !prevState); // Toggle the language menu visibility
+        setIsLanguageMenuVisible((prevState) => !prevState);
     };
-  
-    // Set selected language and close the menu
-    const handleLanguageSelect = (language: 'EN' | 'JP' | 'CN') => {
-        setSelectedLanguage(language); // Update the selected language
-        setIsLanguageMenuVisible(false); // Close the language menu after selection
-    };
+
 
     const toggleMobileMenu = () => {
-        setIsMobileMenuVisible(!isMobileMenuVisible);
-        document.querySelector('.hamburger')?.classList.toggle('open'); // Add/remove the open class for animation
+        setIsMobileMenuVisible((prev) => !prev);
+
+        const hamburger = document.querySelector('.hamburger');
+        if (hamburger) {
+            hamburger.classList.toggle('open');
+        }
     };
-    
+
+    const handleScroll = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+    };
+
     return (
             <div className="headContainer">
                 <div className="headMenuContainer">
-                    <nav>
+                    <div className="hamburger" onClick={toggleMobileMenu}>
+                        <div className="bar"></div>
+                        <div className="bar"></div>
+                        <div className="bar"></div>
+                    </div>
+                    <nav className={`menu ${isMobileMenuVisible ? 'visible' : ''}`}>
+                        <ul className="mobileMenuList">
+                            <li>
+                                <button className="mobileButton" onClick={() => handleScroll('main')}>Main</button>
+                            </li>
+                            <li>
+                                <button className="mobileButton" onClick={() => handleScroll('about')}>About</button>
+                            </li>
+                            <li>
+                                <button className="mobileButton" onClick={() => handleScroll('menu')}>Menu</button>
+                            </li>
+                            <li>
+                                <button className="mobileButton" onClick={() => handleScroll('event')}>Event</button>
+                            </li>
+                            <li>
+                                <button className="mobileButton" onClick={() => handleScroll('gallery')}>Gallery</button>
+                            </li>
+                            <li>
+                                <button className="mobileButton" onClick={() => handleScroll('news')}>News</button>
+                            </li>
+                            <li>
+                                <button className="mobileButton" onClick={() => handleScroll('access')}>Access</button>
+                            </li>
+                            <li>
+                                <button className="mobileButton" onClick={() => handleScroll('gallery')}>Reserve</button>
+                            </li>
+                        </ul>
                         <div className="imgContainer">
                             <ScrollLink to="main" smooth={true} duration={500} offset={-120}>
                                 <Image
@@ -46,15 +92,15 @@ export default function Header() {
                                     alt="rogovski"
                                     width={200}
                                     height={107}
-                                    className="logo"
+                                    className="pcLogo"
                                 />
                             </ScrollLink>
                         </div>
-                        <ul className={`menuList ${isMobileMenuVisible ? 'mobileVisible' : ''}`}>
-
+                        
+                        <ul className="menuList">
                             <li>
                                 <ScrollLink to="about" smooth={true} duration={500} offset={-120} className="menuItem">
-                                    About
+                                  About
                                 </ScrollLink>
                             </li>
                             <li>
@@ -83,19 +129,18 @@ export default function Header() {
                                 </ScrollLink>
                             </li>
                             <li>
-                                <ScrollLink to="gallery" smooth={true} duration={500} className="menuItem">
-                                    Online Shop
+                                <ScrollLink to="gallery" smooth={true} duration={500} offset={100} className="menuItem">
+                                    <span className="menuItem1">Online Shop</span>
                                 </ScrollLink>
                             </li>
                             <li>
-                                <ScrollLink to="gallery" smooth={true} duration={500} className="menuItem">
-                                    Reserve
+                                <ScrollLink to="gallery" smooth={true} duration={500} offset={100} className="menuItem">
+                                <span className="menuItem2">Reserve</span>
                                 </ScrollLink>
                             </li>
 
                             {/* Language Selector */}
                             <div className="langContainer">
-
                                 <div className="langBox">
                                     <div className="frame6" onClick={handleLanguageToggle}>
                                         <div className="langSelect">
@@ -130,26 +175,13 @@ export default function Header() {
                                                     JP
                                                 </div>
                                             )}
-                                            {selectedLanguage !== 'CN' && (
-                                                <div
-                                                    className="languageOption"
-                                                    onClick={() => handleLanguageSelect('CN')}
-                                                >
-                                                    CN
-                                                </div>
-                                            )}
                                         </div>
                                     )}
                                 </div>
 
                             </div>
                         </ul>
-                            {/* Hamburger Menu Toggle Button */}
-                            <div className="hamburger" onClick={toggleMobileMenu}>
-                                <div className="bar"></div>
-                                <div className="bar"></div>
-                                <div className="bar"></div>
-                            </div>
+     
                     </nav>
                 </div>
             </div>

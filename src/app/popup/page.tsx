@@ -1,152 +1,195 @@
 'use client'; // This tells Next.js to treat this file as a client-side component
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/popup.css';
+import { useTranslation } from "react-i18next";
 
 
 const PopupPage: React.FC =() =>{
+    const { t } = useTranslation('popup');
+    const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    const svgs = document.querySelectorAll('.popup-svg');
-    const images = document.querySelectorAll('.popup-image, .popup-image2, .popup-image3'); 
+    useEffect(() => {
+        const rightPopup = document.querySelector('.rightPopup') as HTMLElement;
+        const boxes = document.querySelectorAll('.rightPopupBox') as NodeListOf<HTMLElement>;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            console.log(entry.target); // Debug log to check what is being observed
-            const delay = entry.target.getAttribute('data-delay') || '0'; 
 
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show-svg', 'show-image');
-                (entry.target as HTMLElement).style.animationDelay = `${delay}s`;
-            } else {
-                entry.target.classList.remove('show-svg', 'show-image');
-                (entry.target as HTMLElement).style.animationDelay = '0.2s';
+        const handleScroll = () => {
+            if(!rightPopup) return;
+            const isMobile = window.innerWidth <= 393;
+            const scrollPosition = isMobile ? 
+                document.body.scrollTop || document.documentElement.scrollTop : 
+                window.scrollY;
+            const scrollHeight = rightPopup.scrollHeight; // Total height of scrollable content
+            const clientHeight = rightPopup.clientHeight; // Visible height of the rightPopup
+            const windowHeight = window.innerHeight;
+
+            // Calculate scroll progress based on rightPopup's scroll
+            const scrollProgress = scrollHeight > clientHeight
+                ? (scrollPosition / (scrollHeight - clientHeight)) * 100
+                : 0;
+        
+            // Update progress bar based on scroll progress
+            setProgress(scrollProgress);
+
+
+            //const boxes = document.querySelectorAll('.rightPopupBox');
+            const triggerPoint = isMobile ? windowHeight * 0.3 : windowHeight * 0.3;
+
+            let visibleBoxes = 0;
+
+            boxes.forEach((box, index) => {
+              const boxTop = box.offsetTop;
+              const boxHeight = box.offsetHeight;
+              const isVisible = boxTop + boxHeight > scrollPosition && boxTop < scrollPosition + clientHeight;
+      
+              if (isVisible) {
+                box.classList.add('show');
+                visibleBoxes  = visibleBoxes+1;
+                /*console.log("isVisible, visibleBox?", isVisible, visibleBoxes, visibleBoxes)*/
+              } else {
+                box.classList.remove('show');
+                /*console.log("isVisible", isVisible, visibleBoxes, visibleBoxes)*/
+              }
+            });
+      
+            // Calculate progress based on how many boxes are visible
+            const totalBoxes = boxes.length;
+            const progressPercentage = (visibleBoxes / totalBoxes) * 100;
+            setProgress(progressPercentage);
+
+      /*      console.log("visibleBoxes: ", visibleBoxes);
+      
+            console.log("Box Scroll Progress: ", progressPercentage);*/
+
+            if (scrollPosition > triggerPoint) {
+                rightPopup?.classList.add('show');
+                const scrollProgress = Math.min((scrollPosition - triggerPoint) / windowHeight, 1);
+                if (rightPopup) {
+                    rightPopup.style.transform = `translateY(${100 - (scrollProgress * 100)}%)`;
+                }
             }
-        });
-    }, { threshold: 0.5 }); // Adjust threshold to allow earlier detection
 
-    svgs.forEach((svg) => observer.observe(svg));
-    images.forEach((img) => observer.observe(img));
+            boxes.forEach((box, index) => {
+                const boxTrigger = windowHeight * (0.7 + index * 0.5);
+                if (scrollPosition > boxTrigger) {
+                    box.classList.add('show');
+                }
+            });
+        };
 
-    return () => {
-        observer.disconnect(); 
-    };
-}, []);
+        // Add touch events for mobile
+        const events = ['scroll', 'touchmove', 'touchend'];
+        events.forEach(event => 
+            window.addEventListener(event, handleScroll, { passive: true }));
+        handleScroll();
+
+        return () => {
+            events.forEach(event => window.removeEventListener(event, handleScroll));
+        };
+    }, []);
 
       
     return (
     <section id="popup">
 
-    <div className="wide-page">
+    <div className="widePage">
       <div className="popupContextContainer">
-        <div className="backgroundText">
-        <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="popup-svg"
-              data-delay="5.0"
-              width="1876"
-              height="267"
-              viewBox="0 0 1876 267"
-              fill="none"
-            >
-            <path d="M143.886 153.146H228.797V185.208C228.797 230.572 192.26 252.401 120.213 252.401C63.6056 252.401 12.6587 237.053 12.6587 181.456V70.9452C12.6587 15.3487 63.6056 0 120.213 0C182.482 0 228.797 12.279 228.797 64.8057V91.4102H143.371V57.9841C143.371 48.0927 138.739 38.8834 120.213 38.8834C102.716 38.8834 98.0848 48.0927 98.0848 57.9841V194.417C98.0848 204.309 102.716 213.518 120.213 213.518C138.739 213.518 143.371 204.309 143.371 194.417L143.886 153.146Z" fill="#E2483D"/>
-            <path d="M322.389 99.2551V200.898C322.389 208.061 326.506 214.541 339.371 214.541C352.237 214.541 356.354 208.061 356.354 200.898V99.2551C356.354 92.0924 352.237 85.6118 339.371 85.6118C326.506 85.6118 322.389 92.0924 322.389 99.2551ZM437.663 105.053V198.169C437.663 234.324 391.347 250.014 339.371 250.014C287.395 250.014 241.08 234.324 241.08 198.169V105.053C241.08 69.922 276.073 50.1392 339.371 50.1392C402.669 50.1392 437.663 69.922 437.663 105.053Z" fill="#E2483D"/>
-            <path d="M143.886 153.146H228.797V185.208C228.797 230.572 192.26 252.401 120.213 252.401C63.6056 252.401 12.6587 237.053 12.6587 181.456V70.9452C12.6587 15.3487 63.6056 0 120.213 0C182.482 0 228.797 12.279 228.797 64.8057V91.4102H143.371V57.9841C143.371 48.0927 138.739 38.8834 120.213 38.8834C102.716 38.8834 98.0848 48.0927 98.0848 57.9841V194.417C98.0848 204.309 102.716 213.518 120.213 213.518C138.739 213.518 143.371 204.309 143.371 194.417L143.886 153.146Z" fill="#E2483D"/>
-            <path d="M322.389 99.2551V200.898C322.389 208.061 326.506 214.541 339.371 214.541C352.237 214.541 356.354 208.061 356.354 200.898V99.2551C356.354 92.0924 352.237 85.6118 339.371 85.6118C326.506 85.6118 322.389 92.0924 322.389 99.2551ZM437.663 105.053V198.169C437.663 234.324 391.347 250.014 339.371 250.014C287.395 250.014 241.08 234.324 241.08 198.169V105.053C241.08 69.922 276.073 50.1392 339.371 50.1392C402.669 50.1392 437.663 69.922 437.663 105.053Z" fill="#E2483D"/>
-            <path d="M529.152 52.5267V78.449H530.181C538.415 60.3717 556.941 50.1392 586.789 50.1392C616.122 50.1392 634.133 59.6895 639.794 78.449H640.823C645.455 61.0538 668.098 50.1392 696.916 50.1392C737.571 50.1392 750.436 67.5344 750.436 91.4102V247.626H672.215V112.216C672.215 103.689 671.186 94.4799 655.747 94.4799C640.309 94.4799 639.794 103.689 639.794 112.216V247.626H561.573V112.216C561.573 103.689 560.543 94.4799 545.105 94.4799C529.666 94.4799 529.152 103.689 529.152 112.216V247.626H450.93V52.5267H529.152Z" fill="#E2483D"/>
-            <path d="M843.007 52.5267V78.449H844.036C852.27 60.3717 870.796 50.1392 900.644 50.1392C929.977 50.1392 947.989 59.6895 953.649 78.449H954.679C959.31 61.0538 981.953 50.1392 1010.77 50.1392C1051.43 50.1392 1064.29 67.5344 1064.29 91.4102V247.626H986.07V112.216C986.07 103.689 985.041 94.4799 969.602 94.4799C954.164 94.4799 953.649 103.689 953.649 112.216V247.626H875.428V112.216C875.428 103.689 874.399 94.4799 858.96 94.4799C843.522 94.4799 843.007 103.689 843.007 112.216V247.626H764.785V52.5267H843.007Z" fill="#E2483D"/>
-            <path d="M1159.44 247.626H1078.13V52.5267H1159.44V247.626ZM1159.44 39.2245H1078.13V4.77516H1159.44V39.2245Z" fill="#E2483D"/>
-            <path d="M1192.42 87.9994H1165.15V52.5267H1192.42V17.3952H1273.73V52.5267H1309.24V87.9994H1273.73V194.417C1273.73 206.014 1274.25 212.154 1293.29 212.154H1309.24V247.626H1242.86C1202.2 247.626 1192.42 232.618 1192.42 207.037V87.9994Z" fill="#E2483D"/>
-            <path d="M1334.4 87.9994H1307.13V52.5267H1334.4V17.3952H1415.71V52.5267H1451.22V87.9994H1415.71V194.417C1415.71 206.014 1416.23 212.154 1435.27 212.154H1451.22V247.626H1384.84C1344.18 247.626 1334.4 232.618 1334.4 207.037V87.9994Z" fill="#E2483D"/>
-            <path d="M1652.9 156.216H1537.63V195.782C1537.63 207.378 1543.8 214.541 1554.61 214.541C1567.47 214.541 1571.59 207.378 1571.59 195.782V170.541H1652.9V199.192C1652.9 236.029 1611.73 250.014 1554.61 250.014C1502.63 250.014 1456.32 234.324 1456.32 198.169V105.053C1456.32 69.922 1491.31 50.1392 1554.61 50.1392C1606.58 50.1392 1652.9 63.1003 1652.9 105.053V156.216ZM1537.63 123.813H1571.59V97.2086C1571.59 89.7048 1565.93 85.6118 1554.61 85.6118C1543.29 85.6118 1537.63 89.7048 1537.63 97.2086V123.813Z" fill="#E2483D"/>
-            <path d="M1746.45 107.782V192.371C1746.45 200.898 1753.65 205.673 1763.43 205.673C1773.21 205.673 1780.41 200.898 1780.41 192.371V107.782C1780.41 99.2551 1773.21 94.4799 1763.43 94.4799C1753.65 94.4799 1746.45 99.2551 1746.45 107.782ZM1780.41 247.626V223.068H1779.38C1775.27 242.51 1753.14 250.014 1723.29 250.014C1678.52 250.014 1665.14 224.774 1665.14 201.239V93.4567C1665.14 68.5576 1680.58 50.1392 1721.75 50.1392C1751.59 50.1392 1772.18 61.3949 1779.38 79.1312H1780.41V4.77516H1861.72V247.626H1780.41Z" fill="#E2483D"/>
-        </svg>
-        <svg  xmlns="http://www.w3.org/2000/svg"
-              className="popup-svg"
-              data-delay="10.0"
-              width="1876"
-              height="267"
-              viewBox="0 267 1876 267"
-              fill="none"
-        >
-            <path d="M809.069 314.478H749.374V277.641H954.191V314.478H894.495V520.492H809.069V314.478Z" fill="#E2483D"/>
-            <path d="M996.381 372.121V473.764C996.381 480.927 1000.5 487.407 1013.36 487.407C1026.23 487.407 1030.35 480.927 1030.35 473.764V372.121C1030.35 364.959 1026.23 358.478 1013.36 358.478C1000.5 358.478 996.381 364.959 996.381 372.121ZM1111.66 377.92V471.035C1111.66 507.19 1065.34 522.88 1013.36 522.88C961.387 522.88 915.072 507.19 915.072 471.035V377.92C915.072 342.788 950.066 323.005 1013.36 323.005C1076.66 323.005 1111.66 342.788 1111.66 377.92Z" fill="#E2483D"/>
-        </svg>
-        <svg  xmlns="http://www.w3.org/2000/svg"
-              className="popup-svg"
-              data-delay="15.0"
-              width="1876"
-              height="267"
-              viewBox="0 534 1876 267"
-              fill="none"
-        >
-            <path d="M73.4262 793.359H-12V550.508H73.4262V640.554H118.712V550.508H204.139V793.359H118.712V677.39H73.4262V793.359Z" fill="#E2483D"/>
-            <path d="M297.73 644.988V746.63C297.73 753.793 301.847 760.274 314.713 760.274C327.578 760.274 331.695 753.793 331.695 746.63V644.988C331.695 637.825 327.578 631.344 314.713 631.344C301.847 631.344 297.73 637.825 297.73 644.988ZM413.004 650.786V743.902C413.004 780.056 366.689 795.746 314.713 795.746C262.736 795.746 216.421 780.056 216.421 743.902V650.786C216.421 615.654 251.415 595.872 314.713 595.872C378.01 595.872 413.004 615.654 413.004 650.786Z" fill="#E2483D"/>
-            <path d="M504.493 598.259V624.182H505.522C513.756 606.104 532.282 595.872 562.13 595.872C591.463 595.872 609.475 605.422 615.135 624.182H616.165C620.796 606.786 643.439 595.872 672.258 595.872C712.912 595.872 725.778 613.267 725.778 637.143V793.359H647.556V657.949C647.556 649.422 646.527 640.212 631.089 640.212C615.65 640.212 615.135 649.422 615.135 657.949V793.359H536.914V657.949C536.914 649.422 535.885 640.212 520.446 640.212C505.008 640.212 504.493 649.422 504.493 657.949V793.359H426.272V598.259H504.493Z" fill="#E2483D"/>
-            <path d="M935.681 701.948H820.407V741.514C820.407 753.111 826.582 760.274 837.389 760.274C850.254 760.274 854.371 753.111 854.371 741.514V716.274H935.681V744.925C935.681 781.762 894.511 795.746 837.389 795.746C785.413 795.746 739.098 780.056 739.098 743.902V650.786C739.098 615.654 774.091 595.872 837.389 595.872C889.365 595.872 935.681 608.833 935.681 650.786V701.948ZM820.407 669.546H854.371V642.941C854.371 635.437 848.711 631.344 837.389 631.344C826.068 631.344 820.407 635.437 820.407 642.941V669.546Z" fill="#E2483D"/>
-            <path d="M1027.17 598.259V624.182H1028.2C1036.43 606.104 1054.96 595.872 1084.81 595.872C1114.14 595.872 1132.15 605.422 1137.81 624.182H1138.84C1143.47 606.786 1166.12 595.872 1194.93 595.872C1235.59 595.872 1248.45 613.267 1248.45 637.143V793.359H1170.23V657.949C1170.23 649.422 1169.2 640.212 1153.77 640.212C1138.33 640.212 1137.81 649.422 1137.81 657.949V793.359H1059.59V657.949C1059.59 649.422 1058.56 640.212 1043.12 640.212C1027.68 640.212 1027.17 649.422 1027.17 657.949V793.359H948.948V598.259H1027.17Z" fill="#E2483D"/>
-            <path d="M1343.08 722.072V743.219C1343.08 750.041 1350.29 753.452 1358.01 753.452C1374.99 753.452 1377.05 745.948 1377.05 728.553V694.786C1361.09 702.289 1343.08 706.724 1343.08 722.072ZM1377.05 793.359V770.506H1376.02C1366.24 784.49 1351.32 795.746 1318.9 795.746C1283.39 795.746 1261.77 781.421 1261.77 755.84V726.847C1261.77 675.685 1377.05 681.825 1377.05 645.67C1377.05 637.825 1373.45 631.344 1360.07 631.344C1346.69 631.344 1343.08 637.825 1343.08 645.67V667.158H1261.77V649.081C1261.77 609.856 1311.18 595.872 1360.07 595.872C1408.95 595.872 1458.36 609.856 1458.36 649.081V793.359H1377.05Z" fill="#E2483D"/>
-            <path d="M1551.9 653.515V738.103C1551.9 746.63 1559.11 751.405 1568.89 751.405C1578.66 751.405 1585.87 746.63 1585.87 738.103V653.515C1585.87 644.988 1578.66 640.212 1568.89 640.212C1559.11 640.212 1551.9 644.988 1551.9 653.515ZM1585.87 793.359V768.801H1584.84C1580.72 788.242 1558.59 795.746 1528.75 795.746C1483.98 795.746 1470.6 770.506 1470.6 746.971V639.189C1470.6 614.29 1486.03 595.872 1527.2 595.872C1557.05 595.872 1577.64 607.127 1584.84 624.864H1585.87V550.508H1667.18V793.359H1585.87Z" fill="#E2483D"/>
-            <path d="M1876 701.948H1760.73V741.514C1760.73 753.111 1766.9 760.274 1777.71 760.274C1790.57 760.274 1794.69 753.111 1794.69 741.514V716.274H1876V744.925C1876 781.762 1834.83 795.746 1777.71 795.746C1725.73 795.746 1679.42 780.056 1679.42 743.902V650.786C1679.42 615.654 1714.41 595.872 1777.71 595.872C1829.68 595.872 1876 608.833 1876 650.786V701.948ZM1760.73 669.546H1794.69V642.941C1794.69 635.437 1789.03 631.344 1777.71 631.344C1766.39 631.344 1760.73 635.437 1760.73 642.941V669.546Z" fill="#E2483D"/>
-            
-        </svg>
-        <svg  xmlns="http://www.w3.org/2000/svg"
-              className="popup-svg"
-              data-delay="20.0"
-              width="1876"
-              height="267"
-              viewBox="0 801 1876 267"
-              fill="none"
-        >            
-            <path d="M443.006 971.745H527.918V1003.81C527.918 1049.17 491.38 1071 419.334 1071C362.726 1071 311.779 1055.65 311.779 1000.05V889.544C311.779 833.947 362.726 818.599 419.334 818.599C481.602 818.599 527.918 830.878 527.918 883.404V910.009H442.491V876.583C442.491 866.691 437.86 857.482 419.334 857.482C401.837 857.482 397.205 866.691 397.205 876.583V1013.02C397.205 1022.91 401.837 1032.12 419.334 1032.12C437.86 1032.12 442.491 1022.91 442.491 1013.02L443.006 971.745Z" fill="#E2483D"/>
-            <path d="M655.474 1066.22V1042.01H654.445C646.725 1059.06 627.17 1068.61 595.264 1068.61C558.726 1068.61 540.2 1051.9 540.2 1023.93V871.125H621.509V1006.54C621.509 1015.06 622.538 1024.27 637.977 1024.27C653.415 1024.27 655.474 1015.06 655.474 1006.54V871.125H736.783V1066.22H655.474Z" fill="#E2483D"/>
-            <path d="M830.845 1066.22H749.536V871.125H830.845V1066.22ZM830.845 857.823H749.536V823.374H830.845V857.823Z" fill="#E2483D"/>
-            <path d="M1040.35 940.024H959.037V918.877C959.037 910.691 954.92 904.211 942.054 904.211C929.189 904.211 925.072 910.691 925.072 918.877C925.072 952.303 1038.8 946.164 1038.8 1009.61C1038.8 1048.15 1003.81 1068.61 935.879 1068.61C883.903 1068.61 843.763 1055.31 843.763 1020.18V989.14H925.072V1018.47C925.072 1026.66 929.189 1033.14 942.054 1033.14C954.92 1033.14 959.037 1026.66 959.037 1018.47C959.037 972.086 843.763 986.411 843.763 922.97C843.763 884.087 885.447 868.738 938.967 868.738C1000.72 868.738 1040.35 884.769 1040.35 917.513V940.024Z" fill="#E2483D"/>
-            <path d="M1134.41 1066.22H1053.1V871.125H1134.41V1066.22ZM1134.41 857.823H1053.1V823.374H1134.41V857.823Z" fill="#E2483D"/>
-            <path d="M1228.63 871.125V895.342H1229.66C1237.38 878.288 1256.94 868.738 1288.84 868.738C1325.38 868.738 1343.91 885.451 1343.91 913.42V1066.22H1262.6V930.815C1262.6 922.288 1261.57 913.079 1246.13 913.079C1230.69 913.079 1228.63 922.288 1228.63 930.815V1066.22H1147.33V871.125H1228.63Z" fill="#E2483D"/>
-            <path d="M1552.73 974.815H1437.46V1014.38C1437.46 1025.98 1443.63 1033.14 1454.44 1033.14C1467.3 1033.14 1471.42 1025.98 1471.42 1014.38V989.14H1552.73V1017.79C1552.73 1054.63 1511.56 1068.61 1454.44 1068.61C1402.46 1068.61 1356.15 1052.92 1356.15 1016.77V923.652C1356.15 888.521 1391.14 868.738 1454.44 868.738C1506.41 868.738 1552.73 881.699 1552.73 923.652V974.815ZM1437.46 942.412H1471.42V915.807C1471.42 908.304 1465.76 904.211 1454.44 904.211C1443.12 904.211 1437.46 908.304 1437.46 915.807V942.412Z" fill="#E2483D"/>
-        </svg>
-        </div>
-
-       {/*  <div className="overlayImage" data-aos="fade-up" data-aos-duration="1500">*/}
-         
-          <div className="popup-image">
-            <Image className="img1"
-                src="/popup1.png"
+        <div className="backgroundImage">
+            <Image className="popupBgImage"
+                src="/popup.png"
                 alt="popup1"
-                width={333}
-                height={358}
+                width={1920}
+                height={1200}
+                priority
             />
-            <p>
-              The beets of Rogovsky are grown in the natural-rich mountains of the Sugadaira Highlands in Nagano. Located at an altitude of over 1,300 meters, Sugadaira, with its climate similar to that of Russia, provides the perfect environment for beet cultivation.
-            </p>
-          </div>
+            <div className="bgText pcVersion">
+                Rogovski <br /> Exclusive <br />Cuisine
+            </div>
+            <div className="bgText mobileVersion">
+                Rogovski <br /> Exclusive Cuisine
+            </div>
 
-          <div className="popup-image2">
-              <Image className="img2"
-                  src="/popup2.png"
-                  alt="popup2"
-                  width={354}
-                  height={372}
-              />
-              <p>
-              In Russia, dill is an essential herb used in dishes such as borscht, soups, pickles, and salads, and is one of the indispensable ingredients in Russian cuisine. At Rogovski, they cultivate dill in the Sugadaira Highlands, where they dry it to create their own homemade dry dill. 
-              </p>
-          </div>
-          <div className="popup-image3">
-              <Image className="img3"
-                  src="/popup3.png"
-                  alt="popup3"
-                  width={462.70407}
-                  height={358}
-              />
-              <p>
-              Dumpling that originated in Siberia, known for being a representative Russian dish enjoyed throughout Russia. In Russia, there is even a section in supermarkets dedicated to pelmeni, making it a popular dish enjoyed by everyone, from children to the elderly. Pelmeni is not only popular in Russia but also in Ukraine and Eastern Europe.
-              </p>
-          </div>
+        </div>
+        <div className="rightPopup">
+            <div className="rightPopupWrapper">
+                <div className="rightPopupBox">
+                    <h1 suppressHydrationWarning>{t("menu1")}</h1>
+                    
+                    <Image className="img1"
+                        src="/popup1.png"
+                        alt="popup1"
+                        width={590}
+                        height={358}
+                        loading="lazy"
+                    />
 
-      </div>
+                    <p suppressHydrationWarning>
+                        {t("description1")}                    
+                    </p>
+                </div>
+                <div className="rightPopupBox">
+                    <h1 suppressHydrationWarning>{t("menu2")}</h1>
+                    <Image className="img1"
+                        src="/popup-2.jpg"
+                        alt="popup3"
+                        width={590}
+                        height={358}
+                        loading="lazy"
+                    />
+                    <p suppressHydrationWarning>
+                        {t("description2")}                         
+                    </p>
+                </div>
+                <div className="rightPopupBox">
+                    <h1 suppressHydrationWarning>{t("menu3")}</h1>
+                    <Image className="img1"
+                        src="/popup2.png"
+                        alt="popup2"
+                        width={590}
+                        height={358}
+                        loading="lazy"
+                    />
+                    <p suppressHydrationWarning>
+                        {t("description3")}                   
+                    </p>
+                 </div>
+                <div className="rightPopupBox">
+                    <h1 suppressHydrationWarning>{t("menu4")}</h1>
+                    <Image className="img1"
+                        src="/popup-1.jpg"
+                        alt="popup4"
+                        width={590}
+                        height={358}
+                        loading="lazy"
+                    />
+                    <p suppressHydrationWarning>{t("description4")}  </p>
+                </div>
+                <div className="rightPopupBox">
+                    <h1 suppressHydrationWarning>{t("menu5")}</h1>
+                    <Image className="img1"
+                        src="/popup5.png"
+                        alt="popup5"
+                        width={590}
+                        height={358}
+                        loading="lazy"
+                    />
+                    <p suppressHydrationWarning>{t("description5")}</p>
+                </div>
+            </div>
+                                  {/* Progress Bar (aligned to the right of .rightPopup) */}
+
+        </div>
+        <div className="progressBarContainer">
+                <div
+                    className="progressBar"
+                    style={{ height: `${progress}%` }}>
+
+                </div>
+            </div>
     </div>
+    </div>
+
 
   </section>
   );

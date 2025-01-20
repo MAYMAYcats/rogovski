@@ -1,6 +1,5 @@
 "use client";
 
-import '../styles/globals.css';
 import '../styles/fonts.css';
 import Image from 'next/image';
 import styles from '../styles/discover.module.css';
@@ -24,7 +23,7 @@ const DiscoverPage: React.FC = () => {
 
     return (
         <section id="discover">
-            <Header />
+            {/*<Header />*/}
             <div className={styles.aContainer}>
                 <div className={styles.titleContainer}>
                     <div className={styles.titleEn}>

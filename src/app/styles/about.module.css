@@ -1,17 +1,44 @@
-.viewAllStories {
+.leftContext {
     display: flex;
-    flex-direction: row; /* Align items in a row */
-    justify-content: space-between; /* Push items to edges */
-    align-items: center; /* Vertically center text and icon */
-    margin-top: 100px;
-    margin-bottom: 0;
+    width: 620px;
+    height: 635px;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+  }
+
+  
+.viewAllStories {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 125px;
+}
+
+.viewAllStories::after {
+    content: ''; /* Required to create an element */
+    position: absolute;
+    bottom: 3.5rem; /* Adjust based on the desired space from the text */
+    left: 15%; /* Start the line from the center horizontally */
+    width: 0%; /* Start with zero width */
+    height: 1px; /* The thickness of the underline */
+    background-color: var(--primary-color); /* Red underline */
+    opacity: 0; /* Hidden by default */
+    transition: width 0.3s ease, left 0.3s ease, opacity 0.3s ease-in-out; /* Smooth transitions */
+}
+  
+.viewAllStories:hover::after {
+    opacity: 1; /* Show the red underline when hovered */
+    width: 50%;
+    left: 0;
 }
 
 .viewAllStoriesText {
     display: flex;
     justify-content: flex-start;
     color: #E2483D;
-    font-family: Helvetica;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -31,16 +58,12 @@
     vertical-align: middle;
 }
 
-
-
 .imageContainer {
     display: grid;
     grid-template-columns: 110px 110px 330px;
-    grid-template-rows: 211px 129px 94px 32px;
+    grid-template-rows: 211px 129px 94px;
     gap: 20px;
-    margin-left: auto;
-    margin-right: 0;
-    margin-top: 100px;
+    margin: 0 0 40px 0;
     padding: 0;
     width: 100%;
 }
@@ -51,7 +74,7 @@
     position: relative; 
 }
 
-.imageBox img {
+.imageBox1 img {
     width: 100%; /* Make image responsive within its container */
     height: 100%;
     object-fit: cover; /* Apply cover via CSS */
@@ -93,7 +116,6 @@
     height: 94px;
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    font-family: 'Helvetica Light';
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -104,34 +126,47 @@
 .history{
     display: flex;
     width: 100%;
-    height: 32px;
+    height: auto;
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
     text-align: right;
     align-items: right;
-    font-family: 'Helvetica Light';
     color: var(--text-color);
 }
 
 
-.mobileImageBox2{
+.mobileImageBox2, .customLine{
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 393px) {
+    .subTitle{
+        border: 1px dashed red;
+    }
+    
+    .leftContext {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+      }
 
     .viewAllStories {
         display: flex;
         flex-direction: row; /* Align items in a row */
         justify-content: space-between; /* Push items to edges */
         align-items: center; /* Vertically center text and icon */
-        margin-top: 10px;
-        margin-bottom: 0;
+        margin: 0.8rem;
+        padding: 0;
     }
     
+    .viewAllStoriesText{
+        font-size: 1.2rem;
+    }
+
     .icon {
-        width: 3vw; /* Makes the icon scale relative to the viewport width */
+        width: 6vw; /* Makes the icon scale relative to the viewport width */
         height: auto; /* Keep the aspect ratio of the icon */
       }
 
@@ -142,9 +177,18 @@
         vertical-align: middle;
     }
 
+    .customLine{
+        display: flex;
+        height: 2px;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-top: 2px solid  var(--primary-color);  /* Black solid line */
+        margin-bottom: 1rem;
+    }
 
     .mobileImageBox2{
         margin-top: 1rem;
+        margin-bottom: 0;
         display: flex;
         width: 100%;
         height: auto;

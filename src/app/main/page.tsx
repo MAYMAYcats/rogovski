@@ -4,8 +4,14 @@ import styles from '../styles/main.module.css';
 import Bottom from '@/components/bottom';
 import { useEffect, useState } from 'react';
 
+import { useTranslation } from "react-i18next";
+import { format } from 'date-fns';
+import { ja } from 'date-fns/locale'; // 일본어 로케일 가져오기
+
 
 const MainPage: React.FC =() =>{
+
+    const { t } = useTranslation('main');
 
     const [activeImage, setActiveImage] = useState(1); // Default to the first image
   
@@ -17,6 +23,12 @@ const MainPage: React.FC =() =>{
       return () => clearInterval(interval); // Clean up the interval on component unmount
     }, []);
 
+    const [formattedDate, setFormattedDate] = useState<string>('');
+
+    useEffect(() => {
+      const date = new Date();
+      setFormattedDate(format(date, 'yyyy/MM/dd', { locale: ja }));
+    }, []); // 클라이언트에서만 날짜 처리
 
 return (
 
@@ -55,45 +67,59 @@ return (
                 <path d="M42.6684 335.235H0.214844V0.676514H42.6684V335.235Z" fill="#101214"/>
               </svg>
             </div>
+            <div className={styles.titleEn2}>
+              ROGOVSKI
+            </div>
 
           </div>
           <div className={styles.sinceBox}>
             Since 1951
           </div>
-          <div className={styles.homeSubTitle}>
-            First Russian restaurant in Japan
+          <div className={styles.homeSubTitle} suppressHydrationWarning>
+            {t("subTitle")}
           </div>
-          <div className={styles.homeDescription}>
-            Home cuisine, Rich Drink, Classic Music and Feel Good People
+          <div className={styles.homeDescription} suppressHydrationWarning>
+            {t("homeDescription")}
           </div>
           <div className={styles.reserveButtonWrapper}> 
-            <div className={styles.reserveButton}> 
-              Reserve
+            <div className={styles.reserveButton} suppressHydrationWarning> 
+              {t("reserve")}
             </div>
           </div>
         </div>
         <div className={styles.homeRightContext}>
           <div className={styles.imageBox}>
             <div className={`${styles.imageCycle} ${activeImage === 1 ? styles.active : ''}`}>
-              <Image src="/main-rogovski.png" alt="Image 1" 
-                          width={460}
-                          height={565}/>
+            <Image
+                src="/main-rogovski.png"
+                alt="Image 1"
+                width={460}
+                height={565}
+              />
             </div>
             <div className={`${styles.imageCycle} ${activeImage === 2 ? styles.active : ''}`}>
-              <Image src="/main2.png" alt="Image 2" 
+            <Image
+                src="/main2.png"
+                alt="Image 2"
                 width={460}
                 height={565}
               />
             </div>
             <div className={`${styles.imageCycle} ${activeImage === 3 ? styles.active : ''}`}>
-              <Image src="/main3.png" alt="Image 3" 
-                          width={460}
-                          height={565}/>
+            <Image
+                src="/main3.png"
+                alt="Image 3"
+                width={460}
+                height={565}
+              />
             </div>
             <div className={`${styles.imageCycle} ${activeImage === 4 ? styles.active: ''}`}>
-              <Image src="/main4.png" alt="Image 4" 
-                          width={460}
-                          height={565}/>
+            <Image
+                src="/main4.png"
+                alt="Image 4"
+                width={460}
+                height={565}
+              />
             </div>
           </div>
       

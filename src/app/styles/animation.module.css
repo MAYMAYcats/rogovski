@@ -1,0 +1,195 @@
+/* General styles for the container */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+  
+  /* Background image container */
+.bgImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+  
+
+.bgImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1) translateY(-5%); /* Added translateY to show more upper part */
+}
+
+
+
+  /* Message overlay */
+.message {
+    position: absolute;       /* Overlay text on top of the image */
+    top: 48%;                  /* Vertically center the text */
+    left: 50%;                 /* Horizontally center the text */
+    transform: translate(-50%, -48%); /* Perfectly center the text */
+    text-align: center;        /* Center the text */
+    /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); */
+    z-index: 1;                /* Ensure the overlay text is above the image */
+    color: #FFF;
+    font-family: 'Helvetica';
+    font-size: 6rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 102%; /* 97.92px */
+    letter-spacing: -3.84px;
+    width: 100%;
+}
+
+.highlight {
+    color: #FFF;
+    font-family: 'Helvetica';
+    font-size: 6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 102%;
+    letter-spacing: -3.84px;
+    font-style: italic;
+}
+  
+  /* Message overlay */
+.message {
+    position: absolute;       /* Overlay text on top of the image */
+    top: 48%;                  /* Vertically center the text */
+    left: 50%;                 /* Horizontally center the text */
+    transform: translate(-50%, -48%); /* Perfectly center the text */
+    text-align: center;        /* Center the text */
+    /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); */
+    z-index: 1;                /* Ensure the overlay text is above the image */
+    color: #FFF;
+    font-family: 'Helvetica';
+    font-size: 6rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 102%; /* 97.92px */
+    letter-spacing: -3.84px;
+    width: 100%;
+}
+
+.reserveBtn {
+    position: absolute;       /* Overlay text on top of the image */
+    top: 60%;                  /* Vertically center the text */
+    left: 50%;                 /* Horizontally center the text */
+    transform: translate(-50%, -50%); /* Perfectly center the text */
+    text-align: center;        /* Center the text */
+    z-index: 1;         
+    background-color: var(--primary-color);
+    display: flex;
+    width: 45rem;
+    height: 6rem;
+    padding: 24px 84px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #FFF;
+    font-family: 'Helvetica';
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 102%; /* 48.96px */
+    letter-spacing: -0.96px;
+}
+
+@media (max-width: 768px) {
+/* General styles for the container */
+.container {
+    width: 100%;              /* Full width */
+    height: 100%;/*100vh;*/            /* Full height of the viewport */
+    position: relative;       /* Needed for absolute positioning of elements inside it */
+}
+  
+  /* Background image container */
+.bgImage {
+    position: relative;       /* This allows us to use absolute positioning for the overlay text */
+    width: 100%;
+    height: 100%;              /* Full height of the container */
+}
+  
+  /* Image styling */
+.bgImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* Ensures the image covers the entire container */
+}
+
+.highlight {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 102%;
+    letter-spacing: 1px;
+    font-style: italic;
+}
+  
+  /* Message overlay */
+.message {
+    position: absolute;       /* Overlay text on top of the image */
+    top: 48%;                  /* Vertically center the text */
+    left: 50%;                 /* Horizontally center the text */
+    transform: translate(-50%, -48%); /* Perfectly center the text */
+    text-align: center;        /* Center the text */
+    /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); */
+    z-index: 1;                /* Ensure the overlay text is above the image */
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 102%; /* 97.92px */
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.reserveBtn {
+    position: absolute;       /* Overlay text on top of the image */
+    top: 65%;                  /* Vertically center the text */
+    left: 50%;                 /* Horizontally center the text */
+    transform: translate(-50%, -50%); /* Perfectly center the text */
+    text-align: center;        /* Center the text */
+    z-index: 1;         
+    background-color: var(--primary-color);
+    display: flex;
+    width: 75%;
+    height: 4rem;
+    padding: 24px 84px;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-family: 'Helvetica';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 48.96px */
+    letter-spacing: -0.96px;
+}
+
+}
+
+@media (max-width: 520px) {
+    .highlight {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .message {
+        top: 48%;
+        left: 50%;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+
+    }
+    
+    .reserveBtn {
+        top: 70%;
+        width: 50%;
+        height: 3rem;
+        font-size: 1.5rem;
+    }
+
+}

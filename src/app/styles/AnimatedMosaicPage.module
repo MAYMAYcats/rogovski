@@ -1,0 +1,334 @@
+/* Section container */
+.section {
+    position: relative;
+    width: 100%;
+    height: 300vh;
+}
+
+.imageContainer {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: white;
+}
+
+.image {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    opacity: 0;
+    position: absolute;
+    top: 0%;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    transition: 
+        clip-path 2.5s cubic-bezier(0.77, 0, 0.175, 1),
+        opacity 0.1s,
+        transform 0.2s ease-out;
+    will-change: clip-path, opacity, transform;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #ff8c00, #ff6347);
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.textContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+    color: #333;
+    transition: 
+        opacity 1s ease-out,
+        transform 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+        color 2.5s cubic-bezier(0.77, 0, 0.175, 1);
+    opacity: 0;
+    transform: translate(-50%, -40%);
+}
+
+.title {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin-bottom: 1rem;
+    transform: translateY(0);
+    transition: transform 0.5s ease-out;
+    white-space: nowrap;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    transform: translateY(0);
+    transition: transform 0.5s ease-out;
+}
+
+/* States for scroll animation */
+.imageContainer.reveal .image {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.imageContainer.reveal .textContent {
+    color: white;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+/* Add styles for scroll control */
+.imageContainer.can-scroll {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.imageContainer.scrolling {
+    opacity: 0;
+}
+
+/* Vertical split lines */
+.splitLines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    pointer-events: none;
+}
+
+.splitLine {
+    flex: 1;
+    background: white;
+    transform: scaleX(1);
+    transform-origin: right;
+    transition: transform 2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.imageContainer.reveal .splitLine {
+    transform: scaleX(0);
+}
+
+/* Stagger the split lines */
+.splitLine:nth-child(1) { transition-delay: 0s; }
+.splitLine:nth-child(2) { transition-delay: 0.1s; }
+.splitLine:nth-child(3) { transition-delay: 0.2s; }
+.splitLine:nth-child(4) { transition-delay: 0.3s; }
+.splitLine:nth-child(5) { transition-delay: 0.4s; }
+
+/* Parallax effects */
+.imageContainer.parallax .image {
+    transform: translateY(calc(var(--scroll-speed, 0) * 25%));
+}
+
+.imageContainer.parallax .textContent {
+    transform: translate(-50%, calc(-50% - var(--scroll-speed, 0) * 15%));
+}
+
+/* Optional: Add slight individual movement to title and subtitle */
+.imageContainer.parallax .title {
+    transform: translateY(calc(var(--scroll-speed, 0) * 10%));
+}
+
+.imageContainer.parallax .subtitle {
+    transform: translateY(calc(var(--scroll-speed, 0) * 20%));
+}
+
+/* Add these new styles */
+.decorativeLines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.decorativeLine {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.decorativeLine:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    width: 30%;
+    height: 1px;
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1) 2.7s;
+}
+
+.decorativeLine:nth-child(2) {
+    top: 80%;
+    right: 10%;
+    width: 40%;
+    height: 1px;
+    transform-origin: right;
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1) 2.9s;
+}
+
+.scrollIndicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+    transition: all 0.6s ease-out 3s;
+    z-index: 3;
+    color: white;
+    text-align: center;
+}
+
+.scrollIndicator svg {
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    animation: bounce 2s infinite;
+}
+
+.imageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0)
+    );
+    opacity: 0;
+    transition: opacity 1s ease-out;
+    z-index: 1;
+}
+
+/* Animation states */
+.imageContainer.reveal .decorativeLine {
+    transform: scaleX(1);
+}
+
+.imageContainer.reveal .scrollIndicator {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.imageContainer.reveal .imageOverlay {
+    opacity: 1;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Add these button styles */
+.reserveButton {
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        opacity 1s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.reserveButton:hover {
+    background-color: #c0392b;
+    transform: translateY(20px) scale(1.05);
+}
+
+/* Add button animation state */
+.imageContainer.reveal .reserveButton {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 2.5s; /* Delay to appear after text */
+}
+
+/* Update parallax effect for button */
+.imageContainer.parallax .reserveButton {
+    transform: translateY(calc(var(--scroll-speed, 0) * 25%));
+}
+
+/* Add these styles for rotating words */
+.wordRotator {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    height: 1.2em;
+    vertical-align: top;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.rotatingWords {
+    display: inline-block;
+    position: absolute;
+    opacity: 0;
+    transform: translateY(100%);
+    left: 0;
+    width: 100%;
+    animation: rotateWords 12s ease-in-out infinite;
+}
+
+.rotatingWords:nth-child(1) {
+    position: relative;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.rotatingWords:nth-child(2) { animation-delay: 3s; }
+.rotatingWords:nth-child(3) { animation-delay: 6s; }
+.rotatingWords:nth-child(4) { animation-delay: 9s; }
+
+@keyframes rotateWords {
+    0%, 15% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    20%, 40% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    45%, 50% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+/* Update the reveal animation for text */
+.imageContainer.reveal .rotatingWords {
+    animation-play-state: running;
+}
+
+.imageContainer:not(.reveal) .rotatingWords {
+    animation-play-state: paused;
+}

@@ -1,0 +1,52 @@
+.galleryContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;  
+  height: 1200px;
+  margin: 0 auto; 
+  background-color: oldlace;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10rem;
+}
+
+.galleryContextContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.galleryText {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: max-content;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  padding: 20px;
+  z-index: 2;
+
+}
+
+.galleryImageContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+
+.gallery-svg {
+  display: flex;
+  margin-left: 1000px;
+  box-sizing: 100%;
+  top: 0px;  
+  align-items: center; 
+ 
+}

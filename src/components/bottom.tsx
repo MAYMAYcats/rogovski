@@ -13,7 +13,6 @@ export default function Bottom() {
                 alt={`image ${index}`} 
                 width={241} 
                 height={161}
-                layout="responsive"
                  />
             </div>
         ))}

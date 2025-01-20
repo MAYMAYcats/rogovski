@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import '../app/styles/globals.css'
+import './styles/global.css'
 
 export const metadata: Metadata = {
   title: "Rogovski",
@@ -14,12 +14,11 @@ export default function RootLayout({
  }>) {  
 
   return (
-    <html lang="en"> {/* Define the <html> tag with language */}
-      <body>
-        <main>
-        {children} {/* This is where the content of your pages will appear */}
-        </main>
-      </body>
+    <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body>{children}</body>
     </html>
 
   );

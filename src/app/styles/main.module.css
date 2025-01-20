@@ -1,28 +1,25 @@
 .homeContainer {
     position: relative;
-    /*width: 100%;*/
-    left: 210px; /* Offset the container from the left */
-    width: calc(100% - 420px);
-    height: 661px;
+    width: 100%;
+    height: auto;
     z-index: 1; 
     justify-content: center; 
     display: flex;
     align-items: center;
-    margin: 100px 0 200px 0; 
-    padding-top: 120px;
+    padding: 0 210px;
 }
 
 .homeContextContainer {
     display: flex;
     width: 100%;
-    margin: 160px 0;
+    margin: 10rem 0;
     justify-content: space-between;
 }
 
 .homeLeftContext {
     display: flex;
-    width: 849px;
-    height: 661px;
+    width: 53.0625rem;
+    height: 41.3125rem;
     align-items: left;
     flex-direction: column;
     text-align: left;
@@ -33,7 +30,11 @@
     justify-content: space-between;
     justify-items: baseline;
     align-items: baseline;
-    gap: 76px;
+    gap: 4.75rem;
+}
+
+.titleEn2{
+    display: none;
 }
 
 .titleEn {
@@ -54,15 +55,15 @@
 }
   
 .sinceBox {
-    width: 849px;
-    height: 189px;
+    width: 53.0625rem;
+    height: 11.8125rem;
     background-color: var(--primary-color);
     justify-content: 'flex-start';
     align-items: center;
-    margin-top: 20px;
+    margin-top: 1.25rem;
     display: inline-flex;
     color: white;
-    font-family: 'Helvetica_Compressed';
+   /* font-family: 'Helvetica_Compressed';*/
     text-transform: uppercase;
     word-wrap: break-word;
     font-size: 8rem;
@@ -87,7 +88,7 @@
 .homeDescription {
     color: #000;
     font-family: 'Helvetica Light';
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 36px */
@@ -95,17 +96,14 @@
 }
 
 .homeRightContext {
-    width: 460px;
-    height: 662px;
-    right: 0;
-    left: auto;
-    background-color: grey;
+    width: 28.75rem;
+    height: 41.375rem;
 }
 
 .imageBox {
     position: relative;
     width: 100%;
-    height: 565px;
+    height: 35.3125rem;
     overflow: hidden;
     position: relative;
 }
@@ -138,8 +136,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 460px;
+    height: 565px;
     opacity: 0;
     /*animation: imageCycleAnimation 8s infinite; *//* Adjust timing for 4 images */
     transition: opacity 1s ease-in-out; /* Smooth opacity transition */ 
@@ -152,8 +150,8 @@
 /* Optional: Prevent images from stretching */
 .imageCycle img {
     object-fit: cover; /* Ensures images fill the container without stretching */
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
 
 .aniStyle {
@@ -208,6 +206,7 @@
     height: 161px;
 }
 
+
 @keyframes borderColorChange{
     0% {
         border-color: #E2483D;
@@ -244,18 +243,23 @@
     }
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 1200px) {
+    .homeContainer {
+        padding: 0.5rem 2rem;
+    }
+    
+}
+
+@media (max-width: 393px) {
     .homeContainer {
         position: relative;
-        /*width: 100%;*/
-        left: 0px; /* Offset the container from the left */
+        left: 0px;
         width: 100vw;
+        height: 560px;
         z-index: 1; 
         display: flex;
-        margin: 0; 
-        top: 0;
         margin: 0;
-        margin-bottom: 0;
         padding: 0;
     }
     
@@ -270,30 +274,39 @@
     .homeLeftContext,  .homeRightContext {
         position: absolute;
         margin: 0;
-        padding: 242px 0 162px 0;
+        padding: 0;
         width: 100%;
     }
 
-    
     .homeRightContext {
         display: flex;
         justify-content: center;
         align-items: center;
         left: 0;
+        top: 0;
         height: 100%; /* Full viewport height */
         z-index: -1; /* Ensure it is behind the text */
     }
-    
-    
+
+    .homeLeftContext{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
     .title {
         display: flex;
         justify-content: center;
         justify-items: center;
         align-items: center;
-        margin: 0;
+        margin: 180px 0 0 0;
+        padding: 0;
+        height: 100%;
         flex-direction: column;
-        gap: 8px !important;
+        gap: 0 !important;
         color: var(--secondary-color);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .titleJP{
@@ -301,38 +314,52 @@
         font-size: 1rem;
     }
     
-    .titleEn {
-        display: inline-block; 
-        font-size: clamp(1.5rem, 10vw, 6rem); /* Minimum: 1.5rem, Preferred: 5% of viewport width, Maximum: 3rem */
-        line-height: 1.2;
+    .titleEn{
+        display: none;
+    }
+
+    .titleEn2 {
+        display: flex;
+        color: #FFF;
+        font-family: 'Helvetica_Compressed';
+        font-size: 4.8rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86%;
+        letter-spacing: -1.28px;
+        text-transform: uppercase;
     }
     
-
     .titleVector {
         vertical-align: baseline; 
         display: inline-block; 
         width: 1.5rem;
-        height: 4rem;
+        height: 3rem;
         margin: 0;
+        padding: 0;
     }
 
     .titleVector path {
         fill: var(--secondary-color);
     }
 
-
-
     .homeSubTitle{
+        height: auto;
+        display: flex;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         text-align: center;
-        font-family: 'Helvetica';
-        font-size: 16px;
+        font-size: 1rem;
         font-style: normal;
         font-weight: 700;
         line-height: 120%; /* 19.2px */
         letter-spacing: -0.32px;
         text-transform: capitalize;
-        margin-top: 10px;
+        margin: 0;
+        padding:0;
         color: var(--secondary-color);
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
     }
 
     .reserveButtonWrapper {
@@ -340,8 +367,8 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        margin-top: 55px;
-        margin-bottom: 164px;
+        margin-top: 10px;
+        margin-bottom: 10rem;
       }
 
     .reserveButton{
@@ -349,7 +376,7 @@
         border-radius: 16px;
         background: var(--primary-color);
         justify-content: center;
-        width: 345px;
+        width: 377px;
         height: 48px;
         padding: 12px 16px;
         align-items: center;
@@ -370,15 +397,12 @@
         display:none;
     }
 
-
-
     .imageBox {
         display: flex;
         position: absolute;
         left: 0;
         width: 100%;
         height: 100%;
-
     }
     
     .imageCycle img {

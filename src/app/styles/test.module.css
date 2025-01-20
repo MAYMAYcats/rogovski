@@ -1,0 +1,153 @@
+.gallerySection {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 1080px;
+  background-color: #fff8f5;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.galleryOverlay {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  pointer-events: none;
+
+}
+
+.textOverlay {
+  font-size: 72px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.responsiveSvg {
+  width: 100%; /* Makes the SVG take up the full width of its container */
+  height: auto; /* Adjusts the height to maintain the aspect ratio */
+}
+
+.imagesContainer {
+  position: relative;
+  display: flex;
+  gap: 3vw;
+  padding: 0 4vw;
+  height: 60vh;
+  width: 100%;
+  margin-top: 15vh;
+  overflow-x: scroll; /*scroll;*/
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  z-index: 1;
+  align-items: flex-start; 
+  flex-wrap: nowrap;
+}
+
+.imageWrapper {
+  position: relative;
+  flex: 0 0 auto;
+  height: 150%;
+  background-color: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: auto;
+}
+
+/* Make sure images fill the container correctly */
+.image {
+  object-fit: cover; /* Makes the image cover the container without distortion */
+  width: 100%; /* Full width of the parent container */
+  height: 200%; /* Full height of the parent container */
+}
+
+.size-1 {
+  flex: 0 0 368px;
+  height: 454px;
+  top: 90px;
+}
+
+.size-2 {
+  flex: 0 0 457px;
+  height: 351px;
+  top: 20px;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.progressBarContainer {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  z-index: 3;
+}
+
+.progressBar {
+  height: 100%;
+  background: #333;
+  border-radius: 2px;
+  transition: width 0.1s ease-out;
+}
+
+.sliderContainer, .imageTrack {
+  display: none;
+}
+
+
+@media (max-width: 393px) {
+
+.gallerySection {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 1080px;
+  background-color: #fff8f5;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+
+.sliderContainer {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Full width for responsiveness */
+    height: 300px; /* Adjust based on your design */
+  }
+  
+  .imageTrack {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    width: 100%;
+  }
+  
+  .image {
+    flex-shrink: 0;
+    width: 100%; /* Make sure each image takes up full width */
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .imagesContainer, .galleryOverlay, .progressBarContainer {
+    display: none;
+  }
+
+
+}
+

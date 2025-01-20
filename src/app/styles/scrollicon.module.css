@@ -1,0 +1,9 @@
+.scrollContainer{
+    position: fixed;
+    bottom: 17px;
+    right: 213px;
+    z-Index: 1000;
+    cursor: pointer;
+    width: 64px;
+    height: auto;
+}
