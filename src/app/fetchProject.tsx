@@ -1,6 +1,5 @@
-'use client';
 import { useState, useEffect } from 'react';
-import { createClient, Entry } from 'contentful';
+import { createClient, Entry, EntryCollection } from 'contentful';
 
 // Initialize Contentful Client
 const client = createClient({
@@ -26,14 +25,14 @@ interface ProjectFields {
   image1?: Image;
 }
 
-/*
+// Sys interface (sys properties like id, createdAt, etc.)
 interface Sys {
   id: string;
   createdAt: string;
   updatedAt: string;
 }
-*/
 
+// Define the Project interface that will hold the content fields and sys properties
 interface Project {
   title: string;
   description: string;
@@ -51,7 +50,7 @@ export const useFetchProjects = () => {
   const getData = async () => {
     try {
       // Fetch the content from Contentful
-      const response = await client.getEntries({
+      const response: EntryCollection<ProjectFields> = await client.getEntries({
         content_type: 'rogovski', // Ensure this matches the content type in Contentful
       });
 
