@@ -96,7 +96,7 @@ export default function NewsPage() {
                         
                         <div className={styles.projectsWrapper} ref={wrapperRef}>
                             {projects.map((project) => {
-                                const {title, description, id, createdAt, updatedAt,img} = project;
+                                const {title, description, id/*, createdAt, updatedAt*/,img} = project;
                                 return (
                                     <div className={styles.project} key={id}>
                                         {img && (
@@ -133,4 +133,3 @@ export default function NewsPage() {
         </section>
     );
 }
-//export default NewsPage;
