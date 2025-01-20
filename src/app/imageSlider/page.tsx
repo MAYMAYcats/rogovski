@@ -67,7 +67,7 @@ const ImageSlider: React.FC = () => {
   /* for windows width over than 393 */
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [images, setImages] = useState<Array<{ src: string; alt: string; size: string; position: string }>>([]);
+  /*const [images, setImages] = useState<Array<{ src: string; alt: string; size: string; position: string }>>([]);*/
   const [isLocked, setIsLocked] = useState(false);
   const [progress, setProgress] = useState(0);
   const scrollPosition = useRef(0);

@@ -10,7 +10,7 @@ import {useState, useRef} from 'react';
 export default function NewsPage() {
 
     const {loading, projects} = useFetchProjects();
-    const [scrollPosition, setScrollPosition] = useState(0);
+    /*const [scrollPosition, setScrollPosition] = useState(0);*/
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     if(loading){

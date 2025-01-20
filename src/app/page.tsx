@@ -24,18 +24,19 @@ import { ja } from 'date-fns/locale'; // 일본어 로케일 가져오기
 
 export default function Home() {
   
-  const [formattedDate, setFormattedDate] = useState<string | null>(null); // State to store formatted date
+  /*const [formattedDate, setFormattedDate] = useState<string | null>(null); // State to store formatted date*/
 
   useEffect(() => {
     i18n.changeLanguage('en'); // Set the default language, e.g., 'en' for English
 
     // Only format the date after hydration to avoid mismatch during SSR
     const date = new Date();
-    const formatted = format(date, 'yyyy/MM/dd', { locale: ja });
-    setFormattedDate(formatted); // Set the formatted date
+    //const formatted = format(date, 'yyyy/MM/dd', { locale: ja });
+   // setFormattedDate(formatted); // Set the formatted date
   }, []); // Run this effect only once after the component mounts
 
-  const { locale } = useLocale(); // 컨텍스트에서 로케일 가져오기
+  //const { locale } = useLocale(); // 컨텍스트에서 로케일 가져오기
+
 
   return (
     <>

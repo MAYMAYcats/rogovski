@@ -3,7 +3,6 @@
 import '../styles/fonts.css';
 import Image from 'next/image';
 import styles from '../styles/discover.module.css';
-import Header from '@/components/header';
 import React, { useState } from 'react';
 
 const DiscoverPage: React.FC = () => {

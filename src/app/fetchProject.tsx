@@ -1,6 +1,6 @@
 'use client'; 
 import { useState, useEffect } from 'react';
-import { createClient, Entry, Asset } from 'contentful';
+import { createClient, Entry } from 'contentful';
 
 // Initialize Contentful Client
 const client = createClient({

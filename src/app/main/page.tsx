@@ -22,13 +22,14 @@ const MainPage: React.FC =() =>{
   
       return () => clearInterval(interval); // Clean up the interval on component unmount
     }, []);
-
+/*
     const [formattedDate, setFormattedDate] = useState<string>('');
 
     useEffect(() => {
       const date = new Date();
       setFormattedDate(format(date, 'yyyy/MM/dd', { locale: ja }));
     }, []); // 클라이언트에서만 날짜 처리
+    */
 
 return (
 
