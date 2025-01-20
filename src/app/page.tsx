@@ -31,7 +31,7 @@ export default function Home() {
     i18n.changeLanguage('en'); // Set the default language, e.g., 'en' for English
 
     // Only format the date after hydration to avoid mismatch during SSR
-    const date = new Date();
+    //const date = new Date();
     //const formatted = format(date, 'yyyy/MM/dd', { locale: ja });
    // setFormattedDate(formatted); // Set the formatted date
   }, []); // Run this effect only once after the component mounts

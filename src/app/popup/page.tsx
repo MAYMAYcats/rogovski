@@ -38,7 +38,7 @@ const PopupPage: React.FC =() =>{
 
             let visibleBoxes = 0;
 
-            boxes.forEach((box, index) => {
+            boxes.forEach((box) => {
               const boxTop = box.offsetTop;
               const boxHeight = box.offsetHeight;
               const isVisible = boxTop + boxHeight > scrollPosition && boxTop < scrollPosition + clientHeight;

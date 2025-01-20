@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 import { useState, useEffect } from 'react';
 import { createClient, Entry } from 'contentful';
 
@@ -9,7 +9,29 @@ const client = createClient({
   accessToken: 'drE6gFL_NdF3eZMwlEojAtx0RzaalhSLuSZv5lfe4_c',
 });
 
-// Define TypeScript interfaces
+// Define TypeScript interfaces for Contentful content
+interface File {
+  url: string;
+}
+
+interface Image {
+  fields: {
+    file: File;
+  };
+}
+
+interface ProjectFields {
+  title: string;
+  description: string;
+  image1?: Image;
+}
+
+interface Sys {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 interface Project {
   title: string;
   description: string;
@@ -32,18 +54,16 @@ export const useFetchProjects = () => {
       });
 
       // Map over the fetched items and create project objects
-      const projects = response.items.map((item: Entry<any>) => {
+      const projects = response.items.map((item: Entry<ProjectFields>) => {
         const { title, description, image1 } = item.fields;
         const id = item.sys.id;
         const createdAt = item.sys.createdAt;
         const updatedAt = item.sys.updatedAt;
         const img = image1?.fields?.file?.url || undefined;
 
-        //console.log('Image URL:', img); // Debug log
-
         return {
-          title: title as string,
-          description: description as string,
+          title,
+          description,
           id,
           img,
           createdAt,
