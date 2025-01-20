@@ -26,11 +26,13 @@ interface ProjectFields {
   image1?: Image;
 }
 
+/*
 interface Sys {
   id: string;
   createdAt: string;
   updatedAt: string;
 }
+*/
 
 interface Project {
   title: string;
