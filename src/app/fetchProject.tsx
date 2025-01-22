@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { createClient, Entry, EntryCollection } from 'contentful';
+import { createClient, Entry, EntryCollection, EntrySkeletonType } from 'contentful';
 
 // Initialize Contentful Client
 const client = createClient({
@@ -23,7 +23,7 @@ interface ProjectFields extends EntrySkeletonType {
   fields: {
     title: string;
     description: string;
-    image: string; // Adjust field types to match your Contentful data model
+    image1?: Image; // Adjust field types to match your Contentful data model
   };
   contentTypeId: 'rogovski'; // Match the content type ID in Contentful
 }
