@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { createClient, Entry, EntryCollection, EntrySkeletonType } from 'contentful';
+import { createClient, Entry, EntryCollection } from 'contentful';
+import { EntrySkeletonType } from 'contentful';
 
 // Initialize Contentful Client
 const client = createClient({
@@ -19,14 +20,17 @@ interface Image {
   };
 }
 
+
+// Correctly extend EntrySkeletonType
 interface ProjectFields extends EntrySkeletonType {
   fields: {
     title: string;
     description: string;
-    image1?: Image; // Adjust field types to match your Contentful data model
+    image1?: Image; // Optional field for the image
   };
   contentTypeId: 'rogovski'; // Match the content type ID in Contentful
 }
+
 
 /*
 interface ProjectFields {
@@ -63,15 +67,9 @@ export const useFetchProjects = () => {
   const getData = async () => {
     try {
       // Fetch the content from Contentful
-      /*
       const response: EntryCollection<ProjectFields> = await client.getEntries({
         content_type: 'rogovski', // Ensure this matches the content type in Contentful
       });
-      */
-       // Fetch the content from Contentful
-        const response: EntryCollection<ProjectFields> = await client.getEntries<ProjectFields>({
-            content_type: 'rogovski', // Ensure this matches the content type in Contentful
-          });
 
       // Map over the fetched items and create project objects
       const projects = response.items.map((item: Entry<ProjectFields>) => {
@@ -79,22 +77,13 @@ export const useFetchProjects = () => {
         const id = item.sys.id;
         const createdAt = item.sys.createdAt;
         const updatedAt = item.sys.updatedAt;
-       // const img = image1?.fields?.file?.url || undefined;
-       function isImage(value: unknown): value is Image {
-        return (
-          typeof value === 'object' &&
-          value !== null &&
-          'fields' in value &&
-          typeof (value as any).fields === 'object' &&
-          'file' in (value as any).fields &&
-          typeof (value as any).fields.file === 'object' &&
-          'url' in (value as any).fields.file
-        );
-      }
+        //const img = image1?.fields?.file?.url || undefined;
+        // Ensure type safety
+         // Check if image1 and the file URL exist before using them
+         const img = image1?.fields?.file?.url ?? undefined;
+         
+        console.log(item.fields)
         
-        const img = isImage(image1) ? image1.fields.file.url : undefined;
-
-
         return {
           title,
           description,
@@ -109,8 +98,7 @@ export const useFetchProjects = () => {
       setProjects(projects.map(project => ({
         ...project,
         img: typeof project.img === 'string' ? project.img : undefined
-      }))
-    );
+      })));
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data from Contentful:", error);
