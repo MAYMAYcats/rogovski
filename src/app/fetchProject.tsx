@@ -79,7 +79,13 @@ export const useFetchProjects = () => {
         const id = item.sys.id;
         const createdAt = item.sys.createdAt;
         const updatedAt = item.sys.updatedAt;
-        const img = image1?.fields?.file?.url || undefined;
+       // const img = image1?.fields?.file?.url || undefined;
+        function isImage(value: any): value is Image {
+          return value?.fields?.file?.url !== undefined;
+        }
+        
+        const img = isImage(image1) ? image1.fields.file.url : undefined;
+
 
         return {
           title,
