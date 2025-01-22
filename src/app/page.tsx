@@ -16,7 +16,10 @@ import Header from '@/components/header';
 import ScrollIcon from './scrollicon/page'
 
 import { useEffect } from 'react';
-import i18n from './i18n'; // Import your i18n configuration here
+import i18n from './i18n'; 
+
+
+// Import your i18n configuration here
 /*
 import { useLocale } from '@/context/LocaleContext'; // Context에서 로케일 가져오기
 import { format } from 'date-fns';
@@ -55,6 +58,7 @@ export default function Home() {
       <AccessPage />
       <MosaicPage />
       <FooterPage />
+
     </>
   );
 }

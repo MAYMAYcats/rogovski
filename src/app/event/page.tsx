@@ -42,7 +42,11 @@ const EventPage: React.FC =() =>{
           </div>
           <div className={styles.eventListContainer}>
             
-          <a href="discover" className={styles.eventList}>
+          <a href="discover" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            style={{ color: "black", textDecoration: "none" }}
+            className={styles.eventList}>
               <span className={styles.eventDate} suppressHydrationWarning>
                 {t("eventDate1")}
               </span>
@@ -56,7 +60,11 @@ const EventPage: React.FC =() =>{
               </div>
             </a>
 
-            <a href="discover" className={styles.eventList}>
+            <a href="discover" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ color: "black", textDecoration: "none" }}
+              className={styles.eventList}>
             <span className={styles.eventDate} suppressHydrationWarning>
               {t("eventDate2")}
               </span>
@@ -70,7 +78,11 @@ const EventPage: React.FC =() =>{
               </div>
             </a>
 
-            <a href="discover" className={styles.eventList}>
+            <a href="discover" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ color: "black", textDecoration: "none" }}
+              className={styles.eventList}>
             <span className={styles.eventDate} suppressHydrationWarning>
               {t("eventDate3")}
               </span>
@@ -84,7 +96,11 @@ const EventPage: React.FC =() =>{
               </div>
             </a>
 
-            <a href="discover" className={styles.eventList}>
+            <a href="discover" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ color: "black", textDecoration: "none" }}
+              className={styles.eventList}>
             <span className={styles.eventDate} suppressHydrationWarning>
               {t("eventDate4")}
               </span>
@@ -98,7 +114,11 @@ const EventPage: React.FC =() =>{
               </div>
             </a>
 
-            <a href="discover"  className={styles.eventList}>
+            <a href="discover" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ color: "black", textDecoration: "none" }}
+              className={styles.eventList}>
             <span className={styles.eventDate} suppressHydrationWarning>
               {t("eventDate5")}
               </span>
@@ -112,7 +132,11 @@ const EventPage: React.FC =() =>{
               </div>
             </a>
 
-            <a href="discover" className={styles.eventList}>
+            <a href="discover" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ color: "black", textDecoration: "none" }}
+              className={styles.eventList}>
             <span className={styles.eventDate} suppressHydrationWarning>
               {t("eventDate6")}
               </span>

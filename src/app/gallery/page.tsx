@@ -46,7 +46,50 @@ const galleryImages = [
     size: '2', // 60vw
     position: 'top',
     verticalOffset: '30%' 
+  },
+  {
+    src: '/gallery7.png',
+    alt: 'Restaurant View',
+    size: '1', // 60vw
+    position: 'center',
+    verticalOffset: '10%' 
+  },
+  {
+    src: '/gallery8.png',
+    alt: 'Restaurant View',
+    size: '2', // 60vw
+    position: 'top',
+    verticalOffset: '30%' 
+  },
+  {
+    src: '/gallery9.png',
+    alt: 'Restaurant View',
+    size: '1', // 60vw
+    position: 'center',
+    verticalOffset: '10%' 
+  },
+  {
+    src: '/gallery10.png',
+    alt: 'Restaurant View',
+    size: '2', // 60vw
+    position: 'top',
+    verticalOffset: '30%' 
+  },
+  {
+    src: '/gallery11.png',
+    alt: 'Restaurant View',
+    size: '1', // 60vw
+    position: 'center',
+    verticalOffset: '10%' 
+  },
+  {
+    src: '/gallery12.png',
+    alt: 'Restaurant View',
+    size: '2', // 60vw
+    position: 'top',
+    verticalOffset: '30%' 
   }
+
 ];
 
 
@@ -56,7 +99,13 @@ const imageUrls = [
   '/gallery3.png',
   '/gallery4.png',
   '/gallery6.jpg',
-  '/about-1.jpeg'
+  '/about-1.jpeg',
+  '/gallery7.png',
+  '/gallery8.png',
+  '/gallery9.png',
+  '/gallery10.png',
+  '/gallery11.png',
+  '/gallery12.png'
 ]; // Array of image URLs
 
 const GallerySection: React.FC = () => {

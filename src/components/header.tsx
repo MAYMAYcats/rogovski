@@ -17,6 +17,8 @@ export default function Header() {
 
     const [isLanguageMenuVisible, setIsLanguageMenuVisible] = useState(false);
     const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false); 
+    const onlineshopUrl = `https://www.russian-food.jp`;
+    const reserveUrl = `https://www.rogovski.co.jp/reserve.htm`;
 
 
     useEffect(() => {
@@ -82,6 +84,9 @@ export default function Header() {
                                 <button className="mobileButton" onClick={() => handleScroll('access')}>Access</button>
                             </li>
                             <li>
+                                <button className="mobileButton" onClick={() => handleScroll('gallery')}>News</button>
+                            </li>
+                            <li>
                                 <button className="mobileButton" onClick={() => handleScroll('gallery')}>Reserve</button>
                             </li>
                         </ul>
@@ -129,14 +134,22 @@ export default function Header() {
                                 </ScrollLink>
                             </li>
                             <li>
-                                <ScrollLink to="gallery" smooth={true} duration={500} offset={100} className="menuItem">
-                                    <span className="menuItem1">Online Shop</span>
-                                </ScrollLink>
+                                <a href={onlineshopUrl} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  style={{ color: "black", textDecoration: "none" }}
+                                  className="menuItem">
+                                <span className="menuItem1">Online Shop</span>
+                                </a>
                             </li>
                             <li>
-                                <ScrollLink to="gallery" smooth={true} duration={500} offset={100} className="menuItem">
+                                <a href={reserveUrl}
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                style={{ color: "black", textDecoration: "none" }}
+                                className="menuItem">
                                 <span className="menuItem2">Reserve</span>
-                                </ScrollLink>
+                                </a>
                             </li>
 
                             {/* Language Selector */}

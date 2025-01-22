@@ -1,4 +1,5 @@
 // src/context/LocaleContext.tsx
+
 import React, { createContext, useContext, useState } from 'react';
 
 // 로케일 컨텍스트 생성
