@@ -26,11 +26,13 @@ interface ProjectFields {
 }
 
 // Sys interface (sys properties like id, createdAt, etc.)
+/*
 interface Sys {
   id: string;
   createdAt: string;
   updatedAt: string;
 }
+*/
 
 // Define the Project interface that will hold the content fields and sys properties
 interface Project {
