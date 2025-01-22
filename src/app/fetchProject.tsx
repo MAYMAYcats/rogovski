@@ -80,9 +80,17 @@ export const useFetchProjects = () => {
         const createdAt = item.sys.createdAt;
         const updatedAt = item.sys.updatedAt;
        // const img = image1?.fields?.file?.url || undefined;
-        function isImage(value: any): value is Image {
-          return value?.fields?.file?.url !== undefined;
-        }
+       function isImage(value: unknown): value is Image {
+        return (
+          typeof value === 'object' &&
+          value !== null &&
+          'fields' in value &&
+          typeof (value as any).fields === 'object' &&
+          'file' in (value as any).fields &&
+          typeof (value as any).fields.file === 'object' &&
+          'url' in (value as any).fields.file
+        );
+      }
         
         const img = isImage(image1) ? image1.fields.file.url : undefined;
 
@@ -101,7 +109,8 @@ export const useFetchProjects = () => {
       setProjects(projects.map(project => ({
         ...project,
         img: typeof project.img === 'string' ? project.img : undefined
-      })));
+      }))
+    );
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data from Contentful:", error);
