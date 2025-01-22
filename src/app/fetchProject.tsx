@@ -59,6 +59,11 @@ interface Project {
   updatedAt: string;
 }
 
+// Type guard to check if image1 has the correct structure
+function isImage(value: any): value is Image {
+  return value?.fields?.file?.url !== undefined;
+}
+
 // Custom Hook to fetch data from Contentful
 export const useFetchProjects = () => {
   const [loading, setLoading] = useState(true);
@@ -80,7 +85,8 @@ export const useFetchProjects = () => {
         //const img = image1?.fields?.file?.url || undefined;
         // Ensure type safety
          // Check if image1 and the file URL exist before using them
-         const img = image1?.fields?.file?.url ?? undefined;
+           // Safely access the image URL using the type guard
+           const img = isImage(image1) ? image1.fields.file.url : undefined;
          
         console.log(item.fields)
         
