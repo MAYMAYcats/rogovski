@@ -19,11 +19,22 @@ interface Image {
   };
 }
 
+interface ProjectFields extends EntrySkeletonType {
+  fields: {
+    title: string;
+    description: string;
+    image: string; // Adjust field types to match your Contentful data model
+  };
+  contentTypeId: 'rogovski'; // Match the content type ID in Contentful
+}
+
+/*
 interface ProjectFields {
   title: string;
   description: string;
   image1?: Image;
 }
+*/
 
 // Sys interface (sys properties like id, createdAt, etc.)
 /*
@@ -52,9 +63,15 @@ export const useFetchProjects = () => {
   const getData = async () => {
     try {
       // Fetch the content from Contentful
+      /*
       const response: EntryCollection<ProjectFields> = await client.getEntries({
         content_type: 'rogovski', // Ensure this matches the content type in Contentful
       });
+      */
+       // Fetch the content from Contentful
+        const response: EntryCollection<ProjectFields> = await client.getEntries<ProjectFields>({
+            content_type: 'rogovski', // Ensure this matches the content type in Contentful
+          });
 
       // Map over the fetched items and create project objects
       const projects = response.items.map((item: Entry<ProjectFields>) => {
