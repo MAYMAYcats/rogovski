@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { useTranslation } from "react-i18next";
 
-const ScrollLink = dynamic(() => import('react-scroll').then(mod => mod.Link), { ssr: false });
+const ScrollLink = dynamic(() => import('react-scroll').then(mod => mod.Link)/*, { ssr: false }*/);
 
 const AboutPage: React.FC =() =>{
   const { t } = useTranslation('about');
