@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import styles from '../styles/access.module.css';
 import { useTranslation } from "react-i18next";
+import { Suspense } from 'react';
 
 const AccessPage: React.FC =() =>{
     const { t } = useTranslation('access');
@@ -9,6 +10,7 @@ const AccessPage: React.FC =() =>{
 
     
     <section id="access">
+        <Suspense fallback={<div>Loading...</div>}>
         <div className="container">
             <div className={styles.contextContainer}>
                 <div className="leftContext">
@@ -81,6 +83,7 @@ const AccessPage: React.FC =() =>{
                 </div>
             </div>
         </div>
+        </Suspense>
     </section>
 );
 };

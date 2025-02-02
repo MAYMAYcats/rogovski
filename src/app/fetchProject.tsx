@@ -1,20 +1,13 @@
 'use client'; 
-//import "server-only";
+
 import { useState, useEffect } from 'react';
-import { createClient, EntryCollection, Entry, Asset } from 'contentful';
+import { createClient,  Entry } from 'contentful';
 import config from "@/config/config.json";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-// Initialize Contentful Client
-/*
-const client = createClient({
-  space: '353a6vdkrhu9',
-  environment: 'master',
-  accessToken: 'drE6gFL_NdF3eZMwlEojAtx0RzaalhSLuSZv5lfe4_c',
-});
-*/
+
 
 console.log("config.CONTENTFUL_SPACE_ID", config.CONTENTFUL_SPACE_ID)
 const client = createClient({
@@ -22,6 +15,20 @@ const client = createClient({
   environment: "master",
   accessToken: config.CONTENTFUL_ACCESS_TOKEN,
 });
+
+interface ProjectFields {
+  title: string;
+  description: string;
+  image1?: {
+    fields: {
+      file?: {
+        url: string;
+      };
+    };
+  };
+}
+
+
 // Define TypeScript interfaces
 interface Project {
   title: string;
@@ -45,7 +52,7 @@ export const useFetchProjects = () => {
       });
 
       // Map over the fetched items and create project objects
-      const projects = response.items.map((item: Entry<any>) => {
+      const projects = response.items.map((item: Entry<ProjectFields>) => {
         const { title, description, image1 } = item.fields;
         const id = item.sys.id;
         const createdAt = item.sys.createdAt;
@@ -84,3 +91,4 @@ export const useFetchProjects = () => {
 
   return { loading, projects };
 };
+
