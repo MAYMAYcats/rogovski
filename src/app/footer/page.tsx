@@ -1,5 +1,6 @@
 'use client';
 import '../styles/footer.css';
+import { Suspense } from 'react';
 import { useTranslation } from "react-i18next";
 
 
@@ -7,9 +8,10 @@ import { useTranslation } from "react-i18next";
 const Footer: React.FC = () => {
   const { t } = useTranslation('access');
 
-  
   return(
   <section id="footer">
+     <Suspense fallback={<div>Loading...</div>}>
+
     <div className="footerContainer">
       <div className="leftContainer">
         <h1>03-6274-6670</h1>
@@ -68,6 +70,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </div>
+    </Suspense>
   </section>
 );
 }

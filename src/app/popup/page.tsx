@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import '../styles/popup.css';
+import { Suspense } from 'react';
 import { useTranslation } from "react-i18next";
 
 
@@ -92,6 +93,7 @@ const PopupPage: React.FC =() =>{
       
     return (
     <section id="popup">
+     <Suspense fallback={<div>Loading...</div>}>
 
     <div className="widePage">
       <div className="popupContextContainer">
@@ -190,7 +192,7 @@ const PopupPage: React.FC =() =>{
     </div>
     </div>
 
-
+</Suspense>
   </section>
   );
 };

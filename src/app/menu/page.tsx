@@ -1,6 +1,7 @@
 "use client"
 import Image from 'next/image';
 import styles from '../styles/menu.module.css';
+import { Suspense } from 'react';
 import { useTranslation } from "react-i18next";
 import { useState } from 'react';
 
@@ -13,14 +14,11 @@ const MenuPage: React.FC =() =>{
     const alacrateUrl = `https://www.rogovski.co.jp/oshokuji0.htm`;
     const takeoutUrl = `https://www.rogovski.co.jp/omiyage.htm`;
     const drinkbarUrl = `https://www.rogovski.co.jp/oshokuji3.htm`;
-    
-
-    /*** */
     const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-    /**** */
     return(
     <section id="menu">
+        <Suspense fallback={<div>Loading...</div>}>
         <div className={styles.container}>
             <div className={styles.contextContainer}>
                 <div className={styles.leftContext}>
@@ -129,6 +127,7 @@ const MenuPage: React.FC =() =>{
                 </div>
             </div>
         </div>
+        </Suspense>
   </section>
 );
 }

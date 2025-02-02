@@ -4,7 +4,6 @@ import '../styles/fonts.css';
 import Image from 'next/image';
 import styles from '../styles/discover.module.css';
 import React, { useState } from 'react';
-import { Suspense } from 'react';
 
 const DiscoverPage: React.FC = () => {
     const [openIndices, setOpenIndices] = useState<number[]>([]);

@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../styles/mosaic.module.css";
 import Image from "next/image";
-
+import { Suspense } from 'react';
 import { useTranslation } from "react-i18next";
 
 
@@ -65,6 +65,7 @@ const MosaicPage: React.FC = () => {
 
   return (
     <section ref={sectionRef} id="mosaic" className={styles.section}>
+      <Suspense fallback={<div>Loading...</div>}>
       <div className={styles.mobileContainer}>
         <div className={styles.mobileImage}>
           <Image
@@ -109,6 +110,7 @@ const MosaicPage: React.FC = () => {
           </button>
         </div>
       </div>
+      </Suspense>
     </section>
   );
 };

@@ -3,13 +3,8 @@ import Image from 'next/image';
 import styles from '../styles/main.module.css';
 import Bottom from '@/components/bottom';
 import { useEffect, useState } from 'react';
-
+import { Suspense } from 'react';
 import { useTranslation } from "react-i18next";
-
-/*
-import { format } from 'date-fns';
-import { ja } from 'date-fns/locale'; // 일본어 로케일 가져오기
-*/
 
 const MainPage: React.FC =() =>{
 
@@ -24,18 +19,12 @@ const MainPage: React.FC =() =>{
   
       return () => clearInterval(interval); // Clean up the interval on component unmount
     }, []);
-/*
-    const [formattedDate, setFormattedDate] = useState<string>('');
 
-    useEffect(() => {
-      const date = new Date();
-      setFormattedDate(format(date, 'yyyy/MM/dd', { locale: ja }));
-    }, []); // 클라이언트에서만 날짜 처리
-    */
 
 return (
 
     <section id="main">
+     <Suspense fallback={<div>Loading...</div>}>
 
     <div className={styles.homeContainer}>
       <div className={styles.homeContextContainer}>
@@ -171,6 +160,7 @@ return (
     </div>
 
   <Bottom />
+  </Suspense>
   </section>
 );
 };
