@@ -1,55 +1,28 @@
+'use client'; 
+//import "server-only";
 import { useState, useEffect } from 'react';
-import { createClient, Entry, EntryCollection } from 'contentful';
-import { EntrySkeletonType } from 'contentful';
+import { createClient, EntryCollection, Entry, Asset } from 'contentful';
+import config from "@/config/config.json";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // Initialize Contentful Client
+/*
 const client = createClient({
   space: '353a6vdkrhu9',
   environment: 'master',
   accessToken: 'drE6gFL_NdF3eZMwlEojAtx0RzaalhSLuSZv5lfe4_c',
 });
-
-// Define TypeScript interfaces for Contentful content
-interface File {
-  url: string;
-}
-
-interface Image {
-  fields: {
-    file: File;
-  };
-}
-
-
-// Correctly extend EntrySkeletonType
-interface ProjectFields extends EntrySkeletonType {
-  fields: {
-    title: string;
-    description: string;
-    image1?: Image; // Optional field for the image
-  };
-  contentTypeId: 'rogovski'; // Match the content type ID in Contentful
-}
-
-
-/*
-interface ProjectFields {
-  title: string;
-  description: string;
-  image1?: Image;
-}
 */
 
-// Sys interface (sys properties like id, createdAt, etc.)
-/*
-interface Sys {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-}
-*/
-
-// Define the Project interface that will hold the content fields and sys properties
+console.log("config.CONTENTFUL_SPACE_ID", config.CONTENTFUL_SPACE_ID)
+const client = createClient({
+  space: config.CONTENTFUL_SPACE_ID,
+  environment: "master",
+  accessToken: config.CONTENTFUL_ACCESS_TOKEN,
+});
+// Define TypeScript interfaces
 interface Project {
   title: string;
   description: string;
@@ -57,11 +30,6 @@ interface Project {
   img?: string;
   createdAt: string;
   updatedAt: string;
-}
-
-// Type guard to check if image1 has the correct structure
-function isImage(value: any): value is Image {
-  return value?.fields?.file?.url !== undefined;
 }
 
 // Custom Hook to fetch data from Contentful
@@ -72,31 +40,29 @@ export const useFetchProjects = () => {
   const getData = async () => {
     try {
       // Fetch the content from Contentful
-      const response: EntryCollection<ProjectFields> = await client.getEntries({
+      const response = await client.getEntries({
         content_type: 'rogovski', // Ensure this matches the content type in Contentful
       });
 
       // Map over the fetched items and create project objects
-      const projects = response.items.map((item: Entry<ProjectFields>) => {
+      const projects = response.items.map((item: Entry<any>) => {
         const { title, description, image1 } = item.fields;
         const id = item.sys.id;
         const createdAt = item.sys.createdAt;
         const updatedAt = item.sys.updatedAt;
-        //const img = image1?.fields?.file?.url || undefined;
-        // Ensure type safety
-         // Check if image1 and the file URL exist before using them
-           // Safely access the image URL using the type guard
-           const img = isImage(image1) ? image1.fields.file.url : undefined;
-         
-        console.log(item.fields)
-        
+        const img = image1?.fields?.file?.url || undefined;
+
+        //console.log('Image URL:', img); // Debug log
+
         return {
-          title,
-          description,
+          title: title as string,
+          description: description as string,
           id,
           img,
           createdAt,
           updatedAt
+
+
         };
       });
 

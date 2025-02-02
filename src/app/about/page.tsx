@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import styles from '../styles/about.module.css';
 
+import dynamic from 'next/dynamic';
 import { useTranslation } from "react-i18next";
 
+const ScrollLink = dynamic(() => import('react-scroll').then(mod => mod.Link), { ssr: false });
 
 const AboutPage: React.FC =() =>{
   const { t } = useTranslation('about');
@@ -32,7 +34,7 @@ const AboutPage: React.FC =() =>{
               {t("detail2")}
             </p>
           </div>
-          <a href="discover" className={styles.viewAllStories}>
+          <a href="https://www.rogovski.co.jp/omise0.htm" className={styles.viewAllStories}>
             <p className={styles.viewAllStoriesText} suppressHydrationWarning>
               {t("viewAllStories")}
             </p>
@@ -93,7 +95,9 @@ const AboutPage: React.FC =() =>{
               />
           </div>
           <div className={styles.imageBox5}>
+          <ScrollLink to="gallery" smooth={true} offset={0} className="menuItem">
             Gallery
+          </ScrollLink>
           </div>
         </div>
         <div className={styles.history}>

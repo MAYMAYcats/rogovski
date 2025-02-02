@@ -7,7 +7,6 @@
     flex-direction: column;
   }
 
-  
 .viewAllStories {
     text-decoration: none;
     display: flex;
@@ -110,6 +109,7 @@
 }
 
 .imageBox5{
+    cursor: pointer; /* Set the cursor to pointer */
     grid-row: 3;
     grid-column: 2;
     width: 110px;

@@ -1,16 +1,12 @@
-'use client'; // This tells Next.js to treat this file as a client-side component
+'use client';
 import Image from 'next/image';
-
 import styles from '../styles/news.module.css';
 import {useFetchProjects} from '../fetchProject';
 import {useRef} from 'react';
 
-
-//const NewsPage: React.FC =() =>(
 export default function NewsPage() {
 
     const {loading, projects} = useFetchProjects();
-    /*const [scrollPosition, setScrollPosition] = useState(0);*/
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     if(loading){
@@ -38,12 +34,10 @@ export default function NewsPage() {
     const handleNextClick = () => {
         const wrapper = wrapperRef.current;
         if (!wrapper) return;
-        
-        //const itemWidth = Math.ceil(wrapper.children[0].clientWidth);
+
         const itemWidth = Math.ceil(wrapper.children[0].getBoundingClientRect().width);
         const gap = 32;
-        //new 0107
-        const currentScroll = wrapper.scrollLeft; // Current scroll position
+        const currentScroll = wrapper.scrollLeft; 
         const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
         const newPosition = Math.min(currentScroll + itemWidth + gap, maxScroll);
         
@@ -52,27 +46,12 @@ export default function NewsPage() {
             behavior: 'smooth'
         });
 
-        // Post-scroll check
         setTimeout(() => {
         const actualScroll = wrapper.scrollLeft;
-       /*
-        console.log({
-            action: "Next Click",
-            previousScroll: currentScroll,
-            currentScroll: actualScroll,
-            newPosition,
-            itemWidth,
-            gap,
-            maxScroll,
-        });
-        */
-
-        // Sync the position if the scroll failed to update correctly
         if (actualScroll !== newPosition) {
             wrapper.scrollLeft = newPosition;
-            //console.log("Force-updated scroll position:", newPosition);
         }
-        }, 300); // Allow smooth scrolling time to complete
+        }, 300); 
     };
 
     return (
@@ -96,7 +75,7 @@ export default function NewsPage() {
                         
                         <div className={styles.projectsWrapper} ref={wrapperRef}>
                             {projects.map((project) => {
-                                const {title, description, id/*, createdAt, updatedAt*/,img} = project;
+                                const {title, description, id,img} = project;
                                 return (
                                     <div className={styles.project} key={id}>
                                         {img && (
