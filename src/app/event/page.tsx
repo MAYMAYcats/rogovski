@@ -1,6 +1,7 @@
 'use client'; // This tells Next.js to treat this file as a client-side component
 import Image from 'next/image';
 import styles from '../styles/event.module.css';
+import { Suspense } from 'react';
 import { useTranslation } from "react-i18next";
 
 const EventPage: React.FC =() =>{
@@ -9,6 +10,7 @@ const EventPage: React.FC =() =>{
 
   return (
   <section id="event">
+        <Suspense fallback={<div>Loading...</div>}>
     <div className="container">
       <div className={styles.contextContainer}>
         <div className="leftContext">
@@ -188,6 +190,7 @@ const EventPage: React.FC =() =>{
         </div>
       </div>
     </div>
+    </Suspense>
   </section>
   )
 };

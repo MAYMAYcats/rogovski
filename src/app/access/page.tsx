@@ -1,8 +1,8 @@
 'use client'; // This tells Next.js to treat this file as a client-side component
 import Image from 'next/image';
 import styles from '../styles/access.module.css';
-import { useTranslation } from "react-i18next";
 import { Suspense } from 'react';
+import { useTranslation } from "react-i18next";
 
 const AccessPage: React.FC =() =>{
     const { t } = useTranslation('access');

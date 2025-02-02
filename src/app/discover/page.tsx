@@ -4,25 +4,22 @@ import '../styles/fonts.css';
 import Image from 'next/image';
 import styles from '../styles/discover.module.css';
 import React, { useState } from 'react';
+import { Suspense } from 'react';
 
 const DiscoverPage: React.FC = () => {
-    // Track multiple open sections using an array
     const [openIndices, setOpenIndices] = useState<number[]>([]);
 
     const handleClick = (index: number) => {
         setOpenIndices((prevOpenIndices) => {
-            // If index is already open, remove it (close the section)
             if (prevOpenIndices.includes(index)) {
                 return prevOpenIndices.filter((i) => i !== index);
             }
-            // If index is not open, add it (open the section)
             return [...prevOpenIndices, index];
         });
     };
 
     return (
         <section id="discover">
-            {/*<Header />*/}
             <div className={styles.aContainer}>
                 <div className={styles.titleContainer}>
                     <div className={styles.titleEn}>
@@ -46,8 +43,8 @@ const DiscoverPage: React.FC = () => {
                             className="discover1"
                             src="/discover1.png"
                             alt="discover1"
-                            width={288}   // Fixed width
-                            height={291}  // Fixed height
+                            width={288}
+                            height={291} 
                         />
                     </div>
                 </div>

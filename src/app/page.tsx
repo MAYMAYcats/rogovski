@@ -1,4 +1,4 @@
-'use client';
+'use client';  // Mark the component as a client-side component
 
 import '../app/styles/global.css';
 import '../app/styles/main.module.css';
@@ -13,24 +13,20 @@ import FooterPage from './footer/page';
 import MosaicPage from './mosaic/page';
 import GallerySection from './gallery/page';
 import Header from '@/components/header';
-import ScrollIcon from './scrollicon/page'
+import ScrollIcon from './scrollicon/page';
 
 import { useEffect } from 'react';
 import i18n from './i18n'; 
 import { appWithTranslation } from 'next-i18next';
 
-
 function Home() {
-  
-
   useEffect(() => {
     i18n.changeLanguage('en'); // Set the default language, e.g., 'en' for English
   }, []); 
+
   return (
     <>
-
       <Header />
-
       <MainPage />
       <ScrollIcon />
       <AboutPage />
@@ -42,9 +38,9 @@ function Home() {
       <AccessPage />
       <MosaicPage />
       <FooterPage />
-
     </>
   );
 }
 
+// Correct export: Wrap the component with `appWithTranslation` and then export it
 export default appWithTranslation(Home);
